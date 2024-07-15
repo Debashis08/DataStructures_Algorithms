@@ -1,0 +1,6 @@
+add_subdirectory(0001_Basics)
+add_subdirectory(0002_Tree)
+add_subdirectory(0003_Graph)
+add_subdirectory(0004_GreedyAlgorithms)
+add_subdirectory(0005_DynamicProgramming)
+add_subdirectory(0006_BitwiseAlgorithms)
