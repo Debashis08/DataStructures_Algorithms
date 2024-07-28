@@ -42,7 +42,7 @@ void BFSGraph::BreadthFirstSearch(Node* node)
 		Node* currentNode = nodeQueue.front();
 		nodeQueue.pop();
 
-		for (auto adjacentNode : this->_adjlist[currentNode])
+		for (auto &adjacentNode : this->_adjlist[currentNode])
 		{
 			if (adjacentNode->color == WHITE)
 			{
@@ -73,9 +73,9 @@ void BFSGraph::BFS(char value)
 string BFSGraph::ShowBFSResult()
 {
 	string result = "";
-	for (auto value : this->_nodeMap)
+	for (auto &node : this->_nodeMap)
 	{
-		result = result + " " + value.first + "(" + to_string(value.second->distance) + ")";
+		result = result + " " + node.first + "(" + to_string(node.second->distance) + ")";
 	}
 	return result;
 }
