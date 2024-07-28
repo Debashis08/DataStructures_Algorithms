@@ -1,9 +1,11 @@
 #pragma once
 
-#include<map>
 #include<list>
+#include<map>
+#include<string>
 using namespace std;
 enum color { WHITE, GRAY, BLACK };
+
 class Node
 {
 public:
@@ -24,4 +26,5 @@ private:
 public:
     void PushUndirectedEdge(char valueU, char valueV);
     void BFS(char value);
+    string ShowBFSResult();
 };

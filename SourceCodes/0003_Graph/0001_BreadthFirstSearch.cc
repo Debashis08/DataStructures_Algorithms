@@ -1,5 +1,7 @@
 #include "../Headers/0003_Graph/0001_BreadthFirstSearch.h"
+#include<iostream>
 #include<queue>
+#include<string>
 using namespace std;
 
 Node::Node(char value)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
@@ -65,4 +67,14 @@ void BFSGraph::PushUndirectedEdge(char valueU, char valueV)
 void BFSGraph::BFS(char value)
 {
 	this->BreadthFirstSearch(this->_nodeMap[value]);
+}
+
+string BFSGraph::ShowBFSResult()
+{
+	string result = "";
+	for (auto value : this->_nodeMap)
+	{
+		result = result + " " + value.first + "(" + to_string(value.second->distance) + ")";
+	}
+	return result;
 }
