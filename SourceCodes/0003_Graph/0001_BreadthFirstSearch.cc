@@ -2,6 +2,7 @@
 #include<iostream>
 #include<queue>
 #include<string>
+#include<climits>
 using namespace std;
 
 Node::Node(char value)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
