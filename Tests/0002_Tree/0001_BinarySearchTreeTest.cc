@@ -1,4 +1,5 @@
 #include<gtest/gtest.h>
+#include<string>
 #include "../Headers/0002_Tree/0001_BinarySearchTree.h"
 
 namespace BinarySearchTreeTest

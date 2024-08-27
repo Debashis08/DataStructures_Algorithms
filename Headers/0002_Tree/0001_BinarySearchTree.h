@@ -1,6 +1,7 @@
 #pragma once
-using namespace std;
 
+#include<string>
+using namespace std;
 class Node
 {
 public:
@@ -16,17 +17,21 @@ class BinarySearchTree
 {
 private:
 	Node* _root;
-	void _InsertNode(Node* node, int value);
+	void _InsertNode(Node* node);
 	Node* _FindNode(Node* node, int value);
 	Node* _FindMinimumValueNode(Node* node);
+	Node* _FindMaximumValueNode(Node* node);
+	Node* _FindSuccessorNode(Node* node);
+	Node* _FindPredecessorNode(Node* node);
 	void _DeleteNode(Node* node);
-	void _RecursiveInorderTraversal(Node* node);
-	void _RecursivePreorderTraversal(Node* node);
-	void _RecursivePostorderTraversal(Node* node);
-	void _MorrisInorderTraversal(Node* node);
-	void _MorrisPreorderTraversal(Node* node);
-	void _MorrisPostorderTraversal(Node* node);
+	string _RecursiveInorderTraversal(Node* node);
+	string _RecursivePreorderTraversal(Node* node);
+	string _RecursivePostorderTraversal(Node* node);
+	string _MorrisInorderTraversal(Node* node);
+	string _MorrisPreorderTraversal(Node* node);
+	string _MorrisPostorderTraversal(Node* node);
 public:
 	BinarySearchTree();
+	void CheckBSTresult();
 	void InsertNode(int value);
 };
