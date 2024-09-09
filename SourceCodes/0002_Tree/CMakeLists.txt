@@ -4,4 +4,4 @@ set(0002TREE_SOURCES
 )
 
 # Create a library target
-add_library(0002Tree ${0002TREE_SOURCES})
+add_library(0002TREE ${0002TREE_SOURCES})

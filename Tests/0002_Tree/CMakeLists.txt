@@ -11,19 +11,19 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(
-  0002_Tree_Tests
+  0002TreeTests
   0001_BinarySearchTreeTest.cc)
 
 target_link_libraries(
-  0002_Tree_Tests
+  0002TreeTests
   GTest::gtest_main
 )
 
 target_link_libraries(
-  0002_Tree_Tests
-  0001Basics
+  0002TreeTests
+  0002TREE
 )
 
 
 include(GoogleTest)
-gtest_discover_tests(0002_Tree_Tests)
+gtest_discover_tests(0002TreeTests)

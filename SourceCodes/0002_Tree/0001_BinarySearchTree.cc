@@ -48,8 +48,9 @@ void BinarySearchTree::_InsertNode(Node* node)
 	}
 }
 
-Node* BinarySearchTree::_FindNode(Node* node, int value)
+Node* BinarySearchTree::_FindNode(int value)
 {
+	Node* node = this->_root;
 	while (node != nullptr)
 	{
 		if (value < node->data)
@@ -64,8 +65,8 @@ Node* BinarySearchTree::_FindNode(Node* node, int value)
 		{
 			break;
 		}
-		return node;
 	}
+	return node;
 }
 
 Node* BinarySearchTree::_FindMinimumValueNode(Node* node)
@@ -115,13 +116,131 @@ Node* BinarySearchTree::_FindPredecessorNode(Node* node)
 	}
 }
 
+void BinarySearchTree::_Transplant(Node* nodeU, Node* nodeV)
+{
+	if (nodeU->parent == nullptr)
+	{
+		this->_root = nodeV;
+	}
+	else if (nodeU == nodeU->parent->left)
+	{
+		nodeU->parent->left = nodeV;
+	}
+	else
+	{
+		nodeU->parent->right = nodeV;
+	}
+
+	if (nodeV != nullptr)
+	{
+		nodeV->parent = nodeU->parent;
+	}
+}
+
 void BinarySearchTree::_DeleteNode(Node* node)
 {
-	
+	if (node->left == nullptr)
+	{
+		this->_Transplant(node, node->right);
+	}
+	else if (node->right == nullptr)
+	{
+		this->_Transplant(node, node->left);
+	}
+	else
+	{
+		Node* nodeY = this->_FindMinimumValueNode(node->right);
+		if (nodeY->parent != node)
+		{
+			this->_Transplant(nodeY, nodeY->right);
+			nodeY->right = node->right;
+			nodeY->right->parent = nodeY;
+		}
+		this->_Transplant(node, nodeY);
+		nodeY->left = node->left;
+		nodeY->left->parent = nodeY;
+		delete node;
+	}
+}
+
+string BinarySearchTree::_RecursiveInorderTraversal(Node* node)
+{
+	if (node == nullptr)
+	{
+		return "";
+	}
+	string leftSubTree = this->_RecursiveInorderTraversal(node->left);
+	string currentNode = to_string(node->data);
+	string rightSubTree = this->_RecursiveInorderTraversal(node->right);
+
+	string result = leftSubTree;
+	if (!leftSubTree.empty())
+	{
+		result += " ";
+	}
+	result += currentNode;
+	if (!rightSubTree.empty())
+	{
+		result += " " + rightSubTree;
+	}
+	return result;
+}
+
+string BinarySearchTree::_MorrisInorderTraversal(Node* node)
+{
+	string result = "";
+	while (node != nullptr)
+	{
+		if (node->left == nullptr)
+		{
+			result += to_string(node->data) + " ";
+			node = node->right;
+		}
+		else
+		{
+			Node* predecessor = node->left;
+			while (predecessor->right != nullptr && predecessor->right != node)
+			{
+				predecessor = predecessor->right;
+			}
+			if (predecessor->right == nullptr)
+			{
+				predecessor->right = node;
+				node = node->left;
+			}
+			else
+			{
+				predecessor->right = nullptr;
+				result += to_string(node->data) + " ";
+				node = node->right;
+			}
+		}
+	}
+	if (!result.empty())
+	{
+		result.pop_back();
+	}
+	return result;
 }
 
 void BinarySearchTree::InsertNode(int value)
 {
 	Node* node = new Node(value, nullptr, nullptr, nullptr);
 	this->_InsertNode(node);
+}
+
+void BinarySearchTree::DeleteNode(int value)
+{
+	Node* node = this->_FindNode(value);
+	this->_DeleteNode(node);
+}
+
+string BinarySearchTree::GetRecursiveInorderTravesalResult()
+{
+	return this->_RecursiveInorderTraversal(this->_root);
+}
+
+string BinarySearchTree::GetMorrisInorderTraversalResult()
+{
+	return this->_MorrisInorderTraversal(this->_root);
 }
