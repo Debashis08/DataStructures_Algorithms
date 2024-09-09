@@ -114,6 +114,7 @@ Node* BinarySearchTree::_FindPredecessorNode(Node* node)
 		node = nodeY;
 		nodeY = nodeY->parent;
 	}
+	return nodeY;
 }
 
 void BinarySearchTree::_Transplant(Node* nodeU, Node* nodeV)
