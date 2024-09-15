@@ -182,8 +182,57 @@ string BinarySearchTree::_RecursiveInorderTraversal(Node* node)
 	result += currentNode;
 	if (!rightSubTree.empty())
 	{
-		result += " " + rightSubTree;
+		result += " ";
 	}
+	result += rightSubTree;
+	return result;
+}
+
+string BinarySearchTree::_RecursivePreorderTraversal(Node* node)
+{
+	if (node == nullptr)
+	{
+		return "";
+	}
+	string currentNode = to_string(node->data);
+	string leftSubTree = this->_RecursivePreorderTraversal(node->left);
+	string rightSubTree = this->_RecursivePreorderTraversal(node->right);
+
+	string result = currentNode;
+	if (!leftSubTree.empty())
+	{
+		result += " ";
+	}
+	result += leftSubTree;
+	if (!rightSubTree.empty())
+	{
+		result += " ";
+	}
+	result += rightSubTree;
+	return result;
+}
+
+string BinarySearchTree::_RecursivePostorderTraversal(Node* node)
+{
+	if (node == nullptr)
+	{
+		return "";
+	}
+	string leftSubTree = this->_RecursivePostorderTraversal(node->left);
+	string rightSubTree = this->_RecursivePostorderTraversal(node->right);
+	string currentNode = to_string(node->data);
+
+	string result = leftSubTree;
+	if (!leftSubTree.empty())
+	{
+		result += " ";
+	}
+	result += rightSubTree;
+	if (!rightSubTree.empty())
+	{
+		result += " ";
+	}
+	result += currentNode;
 	return result;
 }
 
@@ -224,6 +273,43 @@ string BinarySearchTree::_MorrisInorderTraversal(Node* node)
 	return result;
 }
 
+string BinarySearchTree::_MorrisPreorderTraversal(Node* node)
+{
+	string result = "";
+	while (node != nullptr)
+	{
+		if (node->left == nullptr)
+		{
+			result += to_string(node->data) + " ";
+			node = node->right;
+		}
+		else
+		{
+			Node* predecessor = node->left;
+			while (predecessor->right != nullptr && predecessor->right != node)
+			{
+				predecessor = predecessor->right;
+			}
+			if (predecessor->right == nullptr)
+			{
+				predecessor->right = node;
+				result += to_string(node->data) + " ";
+				node = node->left;
+			}
+			else
+			{
+				predecessor->right = nullptr;
+				node = node->right;
+			}
+		}
+	}
+	if (!result.empty())
+	{
+		result.pop_back();
+	}
+	return result;
+}
+
 void BinarySearchTree::InsertNode(int value)
 {
 	Node* node = new Node(value, nullptr, nullptr, nullptr);
@@ -241,7 +327,22 @@ string BinarySearchTree::GetRecursiveInorderTravesalResult()
 	return this->_RecursiveInorderTraversal(this->_root);
 }
 
+string BinarySearchTree::GetRecursivePreorderTravesalResult()
+{
+	return this->_RecursivePreorderTraversal(this->_root);
+}
+
+string BinarySearchTree::GetRecursivePostorderTravesalResult()
+{
+	return this->_RecursivePostorderTraversal(this->_root);
+}
+
 string BinarySearchTree::GetMorrisInorderTraversalResult()
 {
 	return this->_MorrisInorderTraversal(this->_root);
+}
+
+string BinarySearchTree::GetMorrisPreorderTraversalResult()
+{
+	return this->_MorrisPreorderTraversal(this->_root);
 }

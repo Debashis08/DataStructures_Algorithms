@@ -36,5 +36,9 @@ public:
 	void InsertNode(int value);
 	void DeleteNode(int value);
 	string GetRecursiveInorderTravesalResult();
+	string GetRecursivePreorderTravesalResult();
+	string GetRecursivePostorderTravesalResult();
 	string GetMorrisInorderTraversalResult();
+	string GetMorrisPreorderTraversalResult();
+	string GetMorrisPostorderTraversalResult();
 };
