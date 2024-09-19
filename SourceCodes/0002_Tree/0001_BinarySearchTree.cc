@@ -310,6 +310,44 @@ string BinarySearchTree::_MorrisPreorderTraversal(Node* node)
 	return result;
 }
 
+string BinarySearchTree::_MorrisPostorderTraversal(Node* node)
+{
+	string result = "";
+	while (node != nullptr)
+	{
+		if (node->right == nullptr)
+		{
+			result += to_string(node->data) + " ";
+			node = node->left;
+		}
+		else
+		{
+			Node* predecessor = node->right;
+			while (predecessor->left != nullptr && predecessor->left != node)
+			{
+				predecessor = predecessor->left;
+			}
+			if (predecessor->left == nullptr)
+			{
+				predecessor->left = node;
+				result += to_string(node->data) + " ";
+				node = node->right;
+			}
+			else
+			{
+				predecessor->left = nullptr;
+				node = node->left;
+			}
+		}
+	}
+	if (!result.empty())
+	{
+		result.pop_back();
+	}
+	reverse(result.begin(), result.end());
+	return result;
+}
+
 void BinarySearchTree::InsertNode(int value)
 {
 	Node* node = new Node(value, nullptr, nullptr, nullptr);
@@ -345,4 +383,9 @@ string BinarySearchTree::GetMorrisInorderTraversalResult()
 string BinarySearchTree::GetMorrisPreorderTraversalResult()
 {
 	return this->_MorrisPreorderTraversal(this->_root);
+}
+
+string BinarySearchTree::GetMorrisPostorderTraversalResult()
+{
+	return this->_MorrisPostorderTraversal(this->_root);
 }
