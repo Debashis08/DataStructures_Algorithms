@@ -1,3 +1,4 @@
+add_subdirectory(0000_CommonUtilities)
 add_subdirectory(0001_Basics)
 add_subdirectory(0002_Tree)
 add_subdirectory(0003_Graph)
