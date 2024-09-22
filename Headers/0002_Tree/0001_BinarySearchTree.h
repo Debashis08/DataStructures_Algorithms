@@ -1,5 +1,6 @@
 #pragma once
 
+#include<vector>
 #include<string>
 using namespace std;
 class Node
@@ -25,20 +26,20 @@ private:
 	Node* _FindPredecessorNode(Node* node);
 	void _Transplant(Node* nodeU, Node* nodeV);
 	void _DeleteNode(Node* node);
-	string _RecursiveInorderTraversal(Node* node);
-	string _RecursivePreorderTraversal(Node* node);
-	string _RecursivePostorderTraversal(Node* node);
-	string _MorrisInorderTraversal(Node* node);
-	string _MorrisPreorderTraversal(Node* node);
-	string _MorrisPostorderTraversal(Node* node);
+	void _RecursiveInorderTraversal(Node* node, vector<int>& result);
+	void _RecursivePreorderTraversal(Node* node, vector<int>& result);
+	void _RecursivePostorderTraversal(Node* node, vector<int>& result);
+	void _MorrisInorderTraversal(Node* node, vector<int>& result);
+	void _MorrisPreorderTraversal(Node* node, vector<int>& result);
+	void _MorrisPostorderTraversal(Node* node, vector<int>& result);
 public:
 	BinarySearchTree();
 	void InsertNode(int value);
 	void DeleteNode(int value);
-	string GetRecursiveInorderTravesalResult();
-	string GetRecursivePreorderTravesalResult();
-	string GetRecursivePostorderTravesalResult();
-	string GetMorrisInorderTraversalResult();
-	string GetMorrisPreorderTraversalResult();
-	string GetMorrisPostorderTraversalResult();
+	vector<int> GetRecursiveInorderTravesalResult();
+	vector<int> GetRecursivePreorderTravesalResult();
+	vector<int> GetRecursivePostorderTravesalResult();
+	vector<int> GetMorrisInorderTraversalResult();
+	vector<int> GetMorrisPreorderTraversalResult();
+	vector<int> GetMorrisPostorderTraversalResult();
 };

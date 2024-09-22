@@ -164,86 +164,46 @@ void BinarySearchTree::_DeleteNode(Node* node)
 	}
 }
 
-string BinarySearchTree::_RecursiveInorderTraversal(Node* node)
+void BinarySearchTree::_RecursiveInorderTraversal(Node* node, vector<int>& result)
 {
 	if (node == nullptr)
 	{
-		return "";
+		return;
 	}
-	string leftSubTree = this->_RecursiveInorderTraversal(node->left);
-	string currentNode = to_string(node->data);
-	string rightSubTree = this->_RecursiveInorderTraversal(node->right);
-
-	string result = leftSubTree;
-	if (!leftSubTree.empty())
-	{
-		result += " ";
-	}
-	result += currentNode;
-	if (!rightSubTree.empty())
-	{
-		result += " ";
-	}
-	result += rightSubTree;
-	return result;
+	this->_RecursiveInorderTraversal(node->left, result);
+	result.push_back(node->data);
+	this->_RecursiveInorderTraversal(node->right, result);
 }
 
-string BinarySearchTree::_RecursivePreorderTraversal(Node* node)
+void BinarySearchTree::_RecursivePreorderTraversal(Node* node, vector<int>& result)
 {
 	if (node == nullptr)
 	{
-		return "";
+		return;
 	}
-	string currentNode = to_string(node->data);
-	string leftSubTree = this->_RecursivePreorderTraversal(node->left);
-	string rightSubTree = this->_RecursivePreorderTraversal(node->right);
-
-	string result = currentNode;
-	if (!leftSubTree.empty())
-	{
-		result += " ";
-	}
-	result += leftSubTree;
-	if (!rightSubTree.empty())
-	{
-		result += " ";
-	}
-	result += rightSubTree;
-	return result;
+	result.push_back(node->data);
+	this->_RecursivePreorderTraversal(node->left, result);
+	this->_RecursivePreorderTraversal(node->right, result);
 }
 
-string BinarySearchTree::_RecursivePostorderTraversal(Node* node)
+void BinarySearchTree::_RecursivePostorderTraversal(Node* node, vector<int>& result)
 {
 	if (node == nullptr)
 	{
-		return "";
+		return;
 	}
-	string leftSubTree = this->_RecursivePostorderTraversal(node->left);
-	string rightSubTree = this->_RecursivePostorderTraversal(node->right);
-	string currentNode = to_string(node->data);
-
-	string result = leftSubTree;
-	if (!leftSubTree.empty())
-	{
-		result += " ";
-	}
-	result += rightSubTree;
-	if (!rightSubTree.empty())
-	{
-		result += " ";
-	}
-	result += currentNode;
-	return result;
+	this->_RecursivePostorderTraversal(node->left, result);
+	this->_RecursivePostorderTraversal(node->right, result);
+	result.push_back(node->data);
 }
 
-string BinarySearchTree::_MorrisInorderTraversal(Node* node)
+void BinarySearchTree::_MorrisInorderTraversal(Node* node, vector<int>& result)
 {
-	string result = "";
 	while (node != nullptr)
 	{
 		if (node->left == nullptr)
 		{
-			result += to_string(node->data) + " ";
+			result.push_back(node->data);
 			node = node->right;
 		}
 		else
@@ -261,26 +221,20 @@ string BinarySearchTree::_MorrisInorderTraversal(Node* node)
 			else
 			{
 				predecessor->right = nullptr;
-				result += to_string(node->data) + " ";
+				result.push_back(node->data);
 				node = node->right;
 			}
 		}
 	}
-	if (!result.empty())
-	{
-		result.pop_back();
-	}
-	return result;
 }
 
-string BinarySearchTree::_MorrisPreorderTraversal(Node* node)
+void BinarySearchTree::_MorrisPreorderTraversal(Node* node, vector<int> & result)
 {
-	string result = "";
 	while (node != nullptr)
 	{
 		if (node->left == nullptr)
 		{
-			result += to_string(node->data) + " ";
+			result.push_back(node->data);
 			node = node->right;
 		}
 		else
@@ -293,7 +247,7 @@ string BinarySearchTree::_MorrisPreorderTraversal(Node* node)
 			if (predecessor->right == nullptr)
 			{
 				predecessor->right = node;
-				result += to_string(node->data) + " ";
+				result.push_back(node->data);
 				node = node->left;
 			}
 			else
@@ -303,21 +257,15 @@ string BinarySearchTree::_MorrisPreorderTraversal(Node* node)
 			}
 		}
 	}
-	if (!result.empty())
-	{
-		result.pop_back();
-	}
-	return result;
 }
 
-string BinarySearchTree::_MorrisPostorderTraversal(Node* node)
+void BinarySearchTree::_MorrisPostorderTraversal(Node* node, vector<int>& result)
 {
-	string result = "";
 	while (node != nullptr)
 	{
 		if (node->right == nullptr)
 		{
-			result += to_string(node->data) + " ";
+			result.push_back(node->data);
 			node = node->left;
 		}
 		else
@@ -330,7 +278,7 @@ string BinarySearchTree::_MorrisPostorderTraversal(Node* node)
 			if (predecessor->left == nullptr)
 			{
 				predecessor->left = node;
-				result += to_string(node->data) + " ";
+				result.push_back(node->data);
 				node = node->right;
 			}
 			else
@@ -340,12 +288,7 @@ string BinarySearchTree::_MorrisPostorderTraversal(Node* node)
 			}
 		}
 	}
-	if (!result.empty())
-	{
-		result.pop_back();
-	}
 	reverse(result.begin(), result.end());
-	return result;
 }
 
 void BinarySearchTree::InsertNode(int value)
@@ -360,32 +303,44 @@ void BinarySearchTree::DeleteNode(int value)
 	this->_DeleteNode(node);
 }
 
-string BinarySearchTree::GetRecursiveInorderTravesalResult()
+vector<int> BinarySearchTree::GetRecursiveInorderTravesalResult()
 {
-	return this->_RecursiveInorderTraversal(this->_root);
+	vector<int> result;
+	this->_RecursiveInorderTraversal(this->_root, result);
+	return result;
 }
 
-string BinarySearchTree::GetRecursivePreorderTravesalResult()
+vector<int> BinarySearchTree::GetRecursivePreorderTravesalResult()
 {
-	return this->_RecursivePreorderTraversal(this->_root);
+	vector<int> result;
+	this->_RecursivePreorderTraversal(this->_root, result);
+	return result;
 }
 
-string BinarySearchTree::GetRecursivePostorderTravesalResult()
+vector<int> BinarySearchTree::GetRecursivePostorderTravesalResult()
 {
-	return this->_RecursivePostorderTraversal(this->_root);
+	vector<int> result;
+	this->_RecursivePostorderTraversal(this->_root, result);
+	return result;
 }
 
-string BinarySearchTree::GetMorrisInorderTraversalResult()
+vector<int> BinarySearchTree::GetMorrisInorderTraversalResult()
 {
-	return this->_MorrisInorderTraversal(this->_root);
+	vector<int> result;
+	this->_MorrisInorderTraversal(this->_root, result);
+	return result;
 }
 
-string BinarySearchTree::GetMorrisPreorderTraversalResult()
+vector<int> BinarySearchTree::GetMorrisPreorderTraversalResult()
 {
-	return this->_MorrisPreorderTraversal(this->_root);
+	vector<int> result;
+	this->_MorrisPreorderTraversal(this->_root, result);
+	return result;
 }
 
-string BinarySearchTree::GetMorrisPostorderTraversalResult()
+vector<int> BinarySearchTree::GetMorrisPostorderTraversalResult()
 {
-	return this->_MorrisPostorderTraversal(this->_root);
+	vector<int> result;
+	this->_MorrisPostorderTraversal(this->_root, result);
+	return result;
 }
