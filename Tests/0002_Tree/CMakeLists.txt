@@ -17,13 +17,8 @@ add_executable(
 target_link_libraries(
   0002TreeTests
   GTest::gtest_main
-)
-
-target_link_libraries(
-  0002TreeTests
   0002TREE
 )
-
 
 include(GoogleTest)
 gtest_discover_tests(0002TreeTests)
