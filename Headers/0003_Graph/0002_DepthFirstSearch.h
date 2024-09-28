@@ -2,9 +2,7 @@
 
 #include<list>
 #include<map>
-#include<utility>
 #include<string>
-#include<vector>
 using namespace std;
 enum color { WHITE, GRAY, BLACK };
 
@@ -18,15 +16,15 @@ public:
     Node(char value);
 };
 
-class BFSGraph
+class DFSGraph
 {
 private:
     map<Node*, list<Node*>> _adjlist;
     map<char, Node*> _nodeMap;
     Node* MakeOrFindNode(char value);
-    void BreadthFirstSearch(Node* node);
+    void DepthFirstSearch(Node* node);
 public:
     void PushUndirectedEdge(char valueU, char valueV);
-    void BFS(char value);
-    vector<pair<char, int>> ShowBFSResult();
+    void DFS(char value);
+    string ShowDFSResult();
 };

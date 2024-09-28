@@ -1,6 +1,8 @@
 #include "../Headers/0003_Graph/0001_BreadthFirstSearch.h"
 #include<iostream>
 #include<queue>
+#include<vector>
+#include<utility>
 #include<string>
 #include<climits>
 using namespace std;
@@ -70,12 +72,12 @@ void BFSGraph::BFS(char value)
 	this->BreadthFirstSearch(this->_nodeMap[value]);
 }
 
-string BFSGraph::ShowBFSResult()
+vector<pair<char, int>> BFSGraph::ShowBFSResult()
 {
-	string result = "";
-	for (auto &node : this->_nodeMap)
+	vector<pair<char, int>> result;
+	for (auto& node : this->_nodeMap)
 	{
-		result = result + " " + node.first + "(" + to_string(node.second->distance) + ")";
+		result.push_back(make_pair(node.first, node.second->distance));
 	}
 	return result;
 }
