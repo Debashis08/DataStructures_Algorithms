@@ -18,7 +18,7 @@ public:
     Node(char value);
 };
 
-class BFSGraph
+class Graph
 {
 private:
     map<Node*, list<Node*>> _adjlist;

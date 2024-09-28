@@ -15,7 +15,7 @@ Node::Node(char value)
 	parent = NULL;
 }
 
-Node* BFSGraph::MakeOrFindNode(char value)
+Node* Graph::MakeOrFindNode(char value)
 {
 	Node* node = NULL;
 	if (this->_nodeMap.find(value) == this->_nodeMap.end())
@@ -30,7 +30,7 @@ Node* BFSGraph::MakeOrFindNode(char value)
 	return node;
 }
 
-void BFSGraph::BreadthFirstSearch(Node* node)
+void Graph::BreadthFirstSearch(Node* node)
 {
 	node->color = WHITE;
 	node->distance = 0;
@@ -58,7 +58,7 @@ void BFSGraph::BreadthFirstSearch(Node* node)
 	}
 }
 
-void BFSGraph::PushUndirectedEdge(char valueU, char valueV)
+void Graph::PushUndirectedEdge(char valueU, char valueV)
 {
 	Node* nodeU = this->MakeOrFindNode(valueU);
 	Node* nodeV = this->MakeOrFindNode(valueV);
@@ -67,12 +67,12 @@ void BFSGraph::PushUndirectedEdge(char valueU, char valueV)
 	this->_adjlist[nodeV].push_back(nodeU);
 }
 
-void BFSGraph::BFS(char value)
+void Graph::BFS(char value)
 {
 	this->BreadthFirstSearch(this->_nodeMap[value]);
 }
 
-vector<pair<char, int>> BFSGraph::ShowBFSResult()
+vector<pair<char, int>> Graph::ShowBFSResult()
 {
 	vector<pair<char, int>> result;
 	for (auto& node : this->_nodeMap)

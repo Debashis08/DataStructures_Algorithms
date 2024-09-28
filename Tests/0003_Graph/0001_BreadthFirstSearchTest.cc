@@ -9,7 +9,7 @@ namespace BreadthFirstSearchTest
 
 	TEST(BFSTesting, ShowBFSResultTest01) 
     {
-		BFSGraph graph;
+		Graph graph;
 
         graph.PushUndirectedEdge('s', 'r');
         graph.PushUndirectedEdge('s', 'w');
@@ -31,7 +31,7 @@ namespace BreadthFirstSearchTest
 
     TEST(BFSTesting, ShowBFSResultTest02) 
     {
-        BFSGraph graph;
+        Graph graph;
 
         graph.PushUndirectedEdge('s', 'r');
 
