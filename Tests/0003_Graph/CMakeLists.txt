@@ -11,19 +11,16 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(
-  0003-Graph-Tests
-  0001_BreadthFirstSearchTest.cc)
-
-target_link_libraries(
-  0003-Graph-Tests
-  GTest::gtest_main
+  0003GraphTests
+  0001_BreadthFirstSearchTest.cc
+  0002_DepthFirstSearchTest.cc
 )
 
 target_link_libraries(
-  0003-Graph-Tests
+  0003GraphTests
+  GTest::gtest_main
   0003GRAPH
 )
 
-
 include(GoogleTest)
-gtest_discover_tests(0003-Graph-Tests)
+gtest_discover_tests(0003GraphTests)

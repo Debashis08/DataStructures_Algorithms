@@ -1,6 +1,7 @@
 # Specify the source files
 set(0003GRAPH_SOURCES
     0001_BreadthFirstSearch.cc
+    0002_DepthFirstSearch.cc
 )
 
 # Create a library target
