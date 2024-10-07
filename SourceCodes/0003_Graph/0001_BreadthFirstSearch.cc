@@ -10,14 +10,14 @@ using namespace std;
 Node::Node(char value)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 {
 	this->data = value;
-	distance = INT_MAX;
-	color = WHITE;
-	parent = NULL;
+	this->distance = INT_MAX;
+	this->color = WHITE;
+	this->parent = nullptr;
 }
 
 Node* Graph::MakeOrFindNode(char value)
 {
-	Node* node = NULL;
+	Node* node = nullptr;
 	if (this->_nodeMap.find(value) == this->_nodeMap.end())
 	{
 		node = new Node(value);
@@ -34,7 +34,7 @@ void Graph::BreadthFirstSearch(Node* node)
 {
 	node->color = WHITE;
 	node->distance = 0;
-	node->parent = NULL;
+	node->parent = nullptr;
 
 	queue<Node*> nodeQueue;
 	nodeQueue.push(node);

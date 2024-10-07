@@ -3,28 +3,31 @@
 #include<list>
 #include<map>
 #include<string>
+#include<vector>
 using namespace std;
 enum color { WHITE, GRAY, BLACK };
 
-class Node
+class DFSNode
 {
 public:
     char data;
-    int distance;
     int color;
-    Node* parent;
-    Node(char value);
+    int discoveredTime;
+    int finishingTime;
+    DFSNode* parent;
+    DFSNode(char value);
 };
 
 class DFSGraph
 {
 private:
-    map<Node*, list<Node*>> _adjlist;
-    map<char, Node*> _nodeMap;
-    Node* MakeOrFindNode(char value);
-    void DepthFirstSearch(Node* node);
+    int time;
+    map<DFSNode*, list<DFSNode*>> _adjlist;
+    map<char, DFSNode*> _nodeMap;
+    DFSNode* MakeOrFindNode(char value);
+    void DepthFirstSearch(DFSNode* DFSNode);
 public:
-    void PushUndirectedEdge(char valueU, char valueV);
-    void DFS(char value);
-    string ShowDFSResult();
+    void PushDirectedEdge(char valueU, char valueV);
+    void DFS();
+    vector<pair<char,pair<int,int>>> ShowDFSResult();
 };

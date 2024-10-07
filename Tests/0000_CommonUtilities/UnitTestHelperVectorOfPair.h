@@ -24,4 +24,19 @@ public:
 		}
 		return result;
 	}
+
+	string VerifyVectorOfPairOfTwo(vector<pair<T1, pair<T2, T2>>> vector)
+	{
+		string result = "";
+		for (auto& iterator : vector)
+		{
+			result += string(1, iterator.first) + "(" + to_string(iterator.second.first) + "," + to_string(iterator.second.second) + ")" + " ";
+		}
+
+		if (!result.empty())
+		{
+			result.pop_back();
+		}
+		return result;
+	}
 };
