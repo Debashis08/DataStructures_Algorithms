@@ -12,7 +12,7 @@ public:
 	string VerifyVectorResult(vector<T> vector)
 	{
 		string result = "";
-		for (auto iterator : vector)
+		for (auto& iterator : vector)
 		{
 			result += to_string(iterator) + " ";
 		}
