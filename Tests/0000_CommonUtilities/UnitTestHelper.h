@@ -9,7 +9,7 @@ template<typename T>
 class UnitTestHelper
 {
 public:
-	string VerifyVectorResult(vector<T>& vector)
+	string VerifyVectorResult(vector<T> vector)
 	{
 		string result = "";
 		for (auto& iterator : vector)
