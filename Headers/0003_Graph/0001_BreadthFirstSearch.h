@@ -8,23 +8,23 @@
 using namespace std;
 enum color { WHITE, GRAY, BLACK };
 
-class Node
+class BFSNode
 {
 public:
     char data;
     int distance;
     int color;
-    Node* parent;
-    Node(char value);
+    BFSNode* parent;
+    BFSNode(char value);
 };
 
-class Graph
+class BFSGraph
 {
 private:
-    map<Node*, list<Node*>> _adjlist;
-    map<char, Node*> _nodeMap;
-    Node* MakeOrFindNode(char value);
-    void BreadthFirstSearch(Node* node);
+    map<BFSNode*, list<BFSNode*>> _adjlist;
+    map<char, BFSNode*> _nodeMap;
+    BFSNode* MakeOrFindNode(char value);
+    void BreadthFirstSearch(BFSNode* node);
 public:
     void PushUndirectedEdge(char valueU, char valueV);
     void BFS(char value);

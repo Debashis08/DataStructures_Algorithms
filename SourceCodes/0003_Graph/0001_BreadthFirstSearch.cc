@@ -7,7 +7,7 @@
 #include<climits>
 using namespace std;
 
-Node::Node(char value)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+BFSNode::BFSNode(char value)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 {
 	this->data = value;
 	this->distance = INT_MAX;
@@ -15,12 +15,12 @@ Node::Node(char value)
 	this->parent = nullptr;
 }
 
-Node* Graph::MakeOrFindNode(char value)
+BFSNode* BFSGraph::MakeOrFindNode(char value)
 {
-	Node* node = nullptr;
+	BFSNode* node = nullptr;
 	if (this->_nodeMap.find(value) == this->_nodeMap.end())
 	{
-		node = new Node(value);
+		node = new BFSNode(value);
 		this->_nodeMap[value] = node;
 	}
 	else
@@ -30,18 +30,18 @@ Node* Graph::MakeOrFindNode(char value)
 	return node;
 }
 
-void Graph::BreadthFirstSearch(Node* node)
+void BFSGraph::BreadthFirstSearch(BFSNode* node)
 {
 	node->color = WHITE;
 	node->distance = 0;
 	node->parent = nullptr;
 
-	queue<Node*> nodeQueue;
+	queue<BFSNode*> nodeQueue;
 	nodeQueue.push(node);
 
 	while (nodeQueue.empty()!=true)
 	{
-		Node* currentNode = nodeQueue.front();
+		BFSNode* currentNode = nodeQueue.front();
 		nodeQueue.pop();
 
 		for (auto &adjacentNode : this->_adjlist[currentNode])
@@ -58,21 +58,21 @@ void Graph::BreadthFirstSearch(Node* node)
 	}
 }
 
-void Graph::PushUndirectedEdge(char valueU, char valueV)
+void BFSGraph::PushUndirectedEdge(char valueU, char valueV)
 {
-	Node* nodeU = this->MakeOrFindNode(valueU);
-	Node* nodeV = this->MakeOrFindNode(valueV);
+	BFSNode* nodeU = this->MakeOrFindNode(valueU);
+	BFSNode* nodeV = this->MakeOrFindNode(valueV);
 
 	this->_adjlist[nodeU].push_back(nodeV);
 	this->_adjlist[nodeV].push_back(nodeU);
 }
 
-void Graph::BFS(char value)
+void BFSGraph::BFS(char value)
 {
 	this->BreadthFirstSearch(this->_nodeMap[value]);
 }
 
-vector<pair<char, int>> Graph::ShowBFSResult()
+vector<pair<char, int>> BFSGraph::ShowBFSResult()
 {
 	vector<pair<char, int>> result;
 	for (auto& node : this->_nodeMap)
