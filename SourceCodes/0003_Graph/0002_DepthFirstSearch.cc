@@ -4,7 +4,7 @@
 #include<climits>
 using namespace std;
 
-DFSNode::DFSNode(char value)
+DFSNode::DFSNode(int value)
 {
 	this->data = value;
 	this->discoveredTime = INT_MAX;
@@ -13,7 +13,7 @@ DFSNode::DFSNode(char value)
 	this->parent = nullptr;
 }
 
-DFSNode* DFSGraph::MakeOrFindNode(char value)
+DFSNode* DFSGraph::MakeOrFindNode(int value)
 {
 	DFSNode* node = nullptr;
 	if (this->_nodeMap.find(value) == this->_nodeMap.end())
@@ -27,6 +27,7 @@ DFSNode* DFSGraph::MakeOrFindNode(char value)
 	}
 	return node;
 }
+
 void DFSGraph::DepthFirstSearch(DFSNode* nodeU)
 {
 	this->time++;
@@ -45,7 +46,7 @@ void DFSGraph::DepthFirstSearch(DFSNode* nodeU)
 	nodeU->finishingTime = time;
 }
 
-void DFSGraph::PushDirectedEdge(char valueU, char valueV)
+void DFSGraph::PushDirectedEdge(int valueU, int valueV)
 {
 	DFSNode* nodeU = this->MakeOrFindNode(valueU);
 	DFSNode* nodeV = this->MakeOrFindNode(valueV);
@@ -65,9 +66,9 @@ void DFSGraph::DFS()
 	}
 }
 
-vector<pair<char, pair<int, int>>> DFSGraph::ShowDFSResult()
+vector<pair<int, pair<int, int>>> DFSGraph::ShowDFSResult()
 {
-	vector<pair<char, pair<int, int>>> result;
+	vector<pair<int, pair<int, int>>> result;
 	for (auto& node : this->_nodeMap)
 	{
 		result.push_back(make_pair(node.first, make_pair(node.second->discoveredTime, node.second->finishingTime)));

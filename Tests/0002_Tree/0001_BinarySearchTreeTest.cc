@@ -5,7 +5,7 @@
 
 namespace BinarySearchTreeTest
 {
-    UnitTestHelper<int> unitTestHelper;
+    UnitTestHelper unitTestHelper;
 
     TEST(BSTInsertData, RecursiveInorderTest)
     {

@@ -14,6 +14,7 @@ add_executable(
   0003GraphTests
   0001_BreadthFirstSearchTest.cc
   0002_DepthFirstSearchTest.cc
+  0003_TopologicalSortTest.cc
 )
 
 target_link_libraries(
