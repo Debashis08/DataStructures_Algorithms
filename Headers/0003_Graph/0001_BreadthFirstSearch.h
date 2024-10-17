@@ -11,22 +11,22 @@ enum color { WHITE, GRAY, BLACK };
 class BFSNode
 {
 public:
-    char data;
+    int data;
     int distance;
     int color;
     BFSNode* parent;
-    BFSNode(char value);
+    BFSNode(int value);
 };
 
 class BFSGraph
 {
 private:
     map<BFSNode*, list<BFSNode*>> _adjlist;
-    map<char, BFSNode*> _nodeMap;
-    BFSNode* MakeOrFindNode(char value);
+    map<int, BFSNode*> _nodeMap;
+    BFSNode* MakeOrFindNode(int value);
     void BreadthFirstSearch(BFSNode* node);
 public:
-    void PushUndirectedEdge(char valueU, char valueV);
-    void BFS(char value);
-    vector<pair<char, int>> ShowBFSResult();
+    void PushUndirectedEdge(int valueU, int valueV);
+    void BFS(int value);
+    vector<pair<int, int>> ShowBFSResult();
 };

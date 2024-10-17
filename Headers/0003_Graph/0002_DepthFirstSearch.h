@@ -10,12 +10,12 @@ enum color { WHITE, GRAY, BLACK };
 class DFSNode
 {
 public:
-    char data;
+    int data;
     int color;
     int discoveredTime;
     int finishingTime;
     DFSNode* parent;
-    DFSNode(char value);
+    DFSNode(int value);
 };
 
 class DFSGraph
@@ -23,11 +23,11 @@ class DFSGraph
 private:
     int time;
     map<DFSNode*, list<DFSNode*>> _adjlist;
-    map<char, DFSNode*> _nodeMap;
-    DFSNode* MakeOrFindNode(char value);
+    map<int, DFSNode*> _nodeMap;
+    DFSNode* MakeOrFindNode(int value);
     void DepthFirstSearch(DFSNode* DFSNode);
 public:
-    void PushDirectedEdge(char valueU, char valueV);
+    void PushDirectedEdge(int valueU, int valueV);
     void DFS();
-    vector<pair<char,pair<int,int>>> ShowDFSResult();
+    vector<pair<int,pair<int,int>>> ShowDFSResult();
 };

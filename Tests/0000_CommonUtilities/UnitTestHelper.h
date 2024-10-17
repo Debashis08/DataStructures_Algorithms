@@ -20,13 +20,29 @@ public:
 		return result;
 	}
 
-	template<typename T1, typename T2>
-	string VerifyVectorResult(vector<pair<T1,T2>> vector)
+	template<typename T>
+	string VerifyVectorResult(vector<pair<T,T>> vector)
 	{
 		string result = "";
 		for (auto& iterator : vector)
 		{
-			result += string(1, iterator.first) + "(" + to_string(iterator.second) + ")" + " ";
+			result += to_string(iterator.first) + "(" + to_string(iterator.second) + ")" + " ";
+		}
+
+		if (!result.empty())
+		{
+			result.pop_back();
+		}
+		return result;
+	}
+	
+	template<typename T>
+	string VerifyVectorResult(vector<pair<T, pair<T, T>>> vector)
+	{
+		string result = "";
+		for (auto& iterator : vector)
+		{
+			result += to_string(iterator.first) + "(" + to_string(iterator.second.first) + "," + to_string(iterator.second.second) + ")" + " ";
 		}
 
 		if (!result.empty())
