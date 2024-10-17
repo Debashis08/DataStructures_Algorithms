@@ -7,7 +7,7 @@
 #include<climits>
 using namespace std;
 
-BFSNode::BFSNode(char value)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+BFSNode::BFSNode(int value)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 {
 	this->data = value;
 	this->distance = INT_MAX;
@@ -15,7 +15,7 @@ BFSNode::BFSNode(char value)
 	this->parent = nullptr;
 }
 
-BFSNode* BFSGraph::MakeOrFindNode(char value)
+BFSNode* BFSGraph::MakeOrFindNode(int value)
 {
 	BFSNode* node = nullptr;
 	if (this->_nodeMap.find(value) == this->_nodeMap.end())
@@ -58,7 +58,7 @@ void BFSGraph::BreadthFirstSearch(BFSNode* node)
 	}
 }
 
-void BFSGraph::PushUndirectedEdge(char valueU, char valueV)
+void BFSGraph::PushUndirectedEdge(int valueU, int valueV)
 {
 	BFSNode* nodeU = this->MakeOrFindNode(valueU);
 	BFSNode* nodeV = this->MakeOrFindNode(valueV);
@@ -67,14 +67,14 @@ void BFSGraph::PushUndirectedEdge(char valueU, char valueV)
 	this->_adjlist[nodeV].push_back(nodeU);
 }
 
-void BFSGraph::BFS(char value)
+void BFSGraph::BFS(int value)
 {
 	this->BreadthFirstSearch(this->_nodeMap[value]);
 }
 
-vector<pair<char, int>> BFSGraph::ShowBFSResult()
+vector<pair<int, int>> BFSGraph::ShowBFSResult()
 {
-	vector<pair<char, int>> result;
+	vector<pair<int, int>> result;
 	for (auto& node : this->_nodeMap)
 	{
 		result.push_back(make_pair(node.first, node.second->distance));
