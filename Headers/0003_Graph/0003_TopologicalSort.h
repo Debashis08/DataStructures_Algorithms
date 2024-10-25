@@ -22,6 +22,7 @@ class TopologicalSortGraph
 {
 private:
     int time;
+    bool hasCycle;
     map<TopologicalSortNode*, list<TopologicalSortNode*>> _adjlist;
     map<int, TopologicalSortNode*> _nodeMap;
     TopologicalSortNode* MakeOrFindNode(int value);
@@ -29,6 +30,7 @@ private:
     void DepthFirstSearch(TopologicalSortNode* DFSNode);
 public:
     void PushDirectedEdge(int valueU, int valueV);
+    void PushSingleNode(int valueU);
     void TopologicalSort();
     vector<pair<int, pair<int, int>>> ShowTopologicalSortResult();
 };
