@@ -2,6 +2,7 @@
 #include<vector>
 #include<utility>
 #include<climits>
+#include<stdexcept>
 using namespace std;
 
 TopologicalSortNode::TopologicalSortNode(int value)
@@ -40,6 +41,11 @@ void TopologicalSortGraph::DepthFirstSearch(TopologicalSortNode* nodeU)
 			nodeV->parent = nodeU;
 			this->DepthFirstSearch(nodeV);
 		}
+		else if (nodeV->color == GRAY)
+		{
+			this->hasCycle = true;
+			return;
+		}
 	}
 	nodeU->color = BLACK;
 	this->time++;
@@ -55,6 +61,11 @@ void TopologicalSortGraph::PushDirectedEdge(int valueU, int valueV)
 	this->_adjlist[nodeU].push_back(nodeV);
 }
 
+void TopologicalSortGraph::PushSingleNode(int valueU)
+{
+	TopologicalSortNode* nodeU = this->MakeOrFindNode(valueU);
+}
+
 void TopologicalSortGraph::TopologicalSort()
 {
 	this->time = 0;
@@ -63,12 +74,20 @@ void TopologicalSortGraph::TopologicalSort()
 		if (iterator.second->color == WHITE)
 		{
 			this->DepthFirstSearch(iterator.second);
+			if (this->hasCycle == true)
+			{
+				break;
+			}
 		}
 	}
 }
 
 vector<pair<int, pair<int, int>>> TopologicalSortGraph::ShowTopologicalSortResult()
 {
+	if (this->hasCycle == true)
+	{
+		throw runtime_error("Cycle Detected");
+	}
 	vector<pair<int, pair<int, int>>> result;
 	for (auto& node : this->_topologicalSortedNodeList)
 	{
