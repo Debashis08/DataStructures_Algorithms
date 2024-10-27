@@ -26,14 +26,14 @@ private:
     map<SCCNode*, list<SCCNode*>> _adjlistT;
     map<int, SCCNode*> _nodeMap;
     list<SCCNode*> _nodesFinishingTimeOrder;
-    vector<vector<SCCNode*>> _allConnectedComponents;
+    vector<vector<int>> _allConnectedComponents;
     SCCNode* MakeOrFindNode(int value);
     void DepthFirstSearchOnGraphG(SCCNode* DFSNode);
-    vector<SCCNode*> DepthFirstSearchOnGraphT(SCCNode* DFSNode, vector<SCCNode*> connectedComponents);
+    vector<int> DepthFirstSearchOnGraphT(SCCNode* DFSNode, vector<int> connectedComponents);
 public:
     void PushDirectedEdge(int valueU, int valueV);
     void PushSingleNode(int valueU);
     void DFSOnGraphG();
     void DFSOnGraphT();
-    void FindAllStronglyConnectedComponents();
+    vector<vector<int>> FindAllStronglyConnectedComponents();
 };

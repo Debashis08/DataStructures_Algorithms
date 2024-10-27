@@ -51,4 +51,20 @@ public:
 		}
 		return result;
 	}
+
+	template<typename T>
+	string VerifyVectorResult(vector<vector<T>> vector)
+	{
+		string result = "";
+		for (auto& iterator : vector)
+		{
+			result += "[";
+			for (auto& it : iterator)
+			{
+				result += to_string(it) + " ";
+			}
+			result += "]";
+		}
+		return result;
+	}
 };

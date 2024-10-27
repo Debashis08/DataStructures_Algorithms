@@ -47,10 +47,11 @@ void StronglyConnectedComponentsGraph::DepthFirstSearchOnGraphG(SCCNode* nodeU)
 	this->_nodesFinishingTimeOrder.push_front(nodeU);
 }
 
-vector<SCCNode*> StronglyConnectedComponentsGraph::DepthFirstSearchOnGraphT(SCCNode* nodeU, vector<SCCNode*> connectedComponents)
+vector<int> StronglyConnectedComponentsGraph::DepthFirstSearchOnGraphT(SCCNode* nodeU, vector<int> connectedComponents)
 {
 	nodeU->color = GRAY;
-	for (auto nodeV : this->_adjlistG[nodeU])
+	connectedComponents.push_back(nodeU->data);
+	for (auto nodeV : this->_adjlistT[nodeU])
 	{
 		if (nodeV->color == WHITE)
 		{
@@ -71,7 +72,7 @@ void StronglyConnectedComponentsGraph::PushDirectedEdge(int valueU, int valueV)
 	this->_adjlistG[nodeU].push_back(nodeV);
 
 	// Creating the transpose of the actual graph.
-	this->_adjlistG[nodeV].push_back(nodeU);
+	this->_adjlistT[nodeV].push_back(nodeU);
 }
 
 void StronglyConnectedComponentsGraph::PushSingleNode(int valueU)
@@ -103,15 +104,16 @@ void StronglyConnectedComponentsGraph::DFSOnGraphT()
 	{
 		if (iterator->color == WHITE)
 		{
-			vector<SCCNode*> connectedComponents;
+			vector<int> connectedComponents;
 			auto result = this->DepthFirstSearchOnGraphT(iterator, connectedComponents);
 			this->_allConnectedComponents.push_back(result);
 		}
 	}
 }
 
-
-void StronglyConnectedComponentsGraph::FindAllStronglyConnectedComponents()
+vector<vector<int>> StronglyConnectedComponentsGraph::FindAllStronglyConnectedComponents()
 {
 	this->DFSOnGraphG();
+	this->DFSOnGraphT();
+	return this->_allConnectedComponents;
 }
