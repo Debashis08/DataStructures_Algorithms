@@ -15,6 +15,7 @@ add_executable(
   0001_BreadthFirstSearchTest.cc
   0002_DepthFirstSearchTest.cc
   0003_TopologicalSortTest.cc
+  0004_StronglyConnectedComponentsTest.cc
 )
 
 target_link_libraries(

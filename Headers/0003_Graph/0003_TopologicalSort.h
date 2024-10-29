@@ -25,8 +25,8 @@ private:
     bool hasCycle;
     map<TopologicalSortNode*, list<TopologicalSortNode*>> _adjlist;
     map<int, TopologicalSortNode*> _nodeMap;
-    TopologicalSortNode* MakeOrFindNode(int value);
     list<TopologicalSortNode*> _topologicalSortedNodeList;
+    TopologicalSortNode* MakeOrFindNode(int value);
     void DepthFirstSearch(TopologicalSortNode* DFSNode);
 public:
     void PushDirectedEdge(int valueU, int valueV);
