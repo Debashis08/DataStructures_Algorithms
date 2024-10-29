@@ -63,6 +63,10 @@ public:
 			{
 				result += to_string(it) + " ";
 			}
+			if (!result.empty())
+			{
+				result.pop_back();
+			}
 			result += "]";
 		}
 		return result;

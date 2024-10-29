@@ -47,7 +47,7 @@ void StronglyConnectedComponentsGraph::DepthFirstSearchOnGraphG(SCCNode* nodeU)
 	this->_nodesFinishingTimeOrder.push_front(nodeU);
 }
 
-vector<int> StronglyConnectedComponentsGraph::DepthFirstSearchOnGraphT(SCCNode* nodeU, vector<int> connectedComponents)
+void StronglyConnectedComponentsGraph::DepthFirstSearchOnGraphT(SCCNode* nodeU, vector<int>& connectedComponents)
 {
 	nodeU->color = GRAY;
 	connectedComponents.push_back(nodeU->data);
@@ -60,7 +60,6 @@ vector<int> StronglyConnectedComponentsGraph::DepthFirstSearchOnGraphT(SCCNode* 
 		}
 	}
 	nodeU->color = BLACK;
-	return connectedComponents;
 }
 
 void StronglyConnectedComponentsGraph::PushDirectedEdge(int valueU, int valueV)
@@ -105,8 +104,8 @@ void StronglyConnectedComponentsGraph::DFSOnGraphT()
 		if (iterator->color == WHITE)
 		{
 			vector<int> connectedComponents;
-			auto result = this->DepthFirstSearchOnGraphT(iterator, connectedComponents);
-			this->_allConnectedComponents.push_back(result);
+			this->DepthFirstSearchOnGraphT(iterator, connectedComponents);
+			this->_allConnectedComponents.push_back(connectedComponents);
 		}
 	}
 }

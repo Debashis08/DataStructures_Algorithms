@@ -29,7 +29,7 @@ private:
     vector<vector<int>> _allConnectedComponents;
     SCCNode* MakeOrFindNode(int value);
     void DepthFirstSearchOnGraphG(SCCNode* DFSNode);
-    vector<int> DepthFirstSearchOnGraphT(SCCNode* DFSNode, vector<int> connectedComponents);
+    void DepthFirstSearchOnGraphT(SCCNode* DFSNode, vector<int>& connectedComponents);
 public:
     void PushDirectedEdge(int valueU, int valueV);
     void PushSingleNode(int valueU);
