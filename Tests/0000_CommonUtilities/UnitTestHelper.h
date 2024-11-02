@@ -3,6 +3,7 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include<algorithm>
 using namespace std;
 
 class UnitTestHelper
@@ -70,5 +71,40 @@ public:
 			result += "]";
 		}
 		return result;
+	}
+
+
+	// This helper method is used to sort the vector of vectors of a particular typename.
+	// Each inner vector is sorted first.
+	// Then each of them are sorted by their first element, in increasing order.
+	template<typename T>
+	vector<vector<T>> SortVectorOfVectors(vector<vector<T>> data)
+	{
+		// Step 1: Sorting each inner vectors.
+		for (auto& innerVector : data)
+		{
+			sort(innerVector.begin(), innerVector.end());
+		}
+
+		// Step 2: Sorting all the vectors by their first element, in increasing order.
+		sort(data.begin(), data.end(), [](const vector<T>& a, const vector<T>& b)
+			{
+				// Checking if both inner vectors are empty to prevent out-of-bounds access.
+				if (a.empty() && b.empty())
+					return false;
+
+				// Considering empty vector as less than non-empty vector.
+				if (a.empty())
+					return true;
+
+				// Considering non-empty vector as greater than empty vector.
+				if (b.empty())
+					return false;
+
+				// Comparing the first elements of each vector.
+				return (a[0] < b[0]);
+			});
+
+		return data;
 	}
 };
