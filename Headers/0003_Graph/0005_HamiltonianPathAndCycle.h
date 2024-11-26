@@ -1,7 +1,7 @@
 #pragma once
 
 #include<map>
-#include<list>
+#include<unordered_set>
 #include<vector>
 using namespace std;
 
@@ -18,11 +18,16 @@ class HamiltonianGraph
 private:
 	bool isHamiltonianCyclePresent;
 	bool isHamiltonianPathPresent;
-	map<HamiltonianNode*, list<HamiltonianNode*>> _adjlist;
+	int visitedNodeCount;
+	map<HamiltonianNode*, unordered_set<HamiltonianNode*>> _adjlist;
 	map<int, HamiltonianNode*> _nodeMap;
+	vector<HamiltonianNode*> _hamiltonianPath;
 	HamiltonianNode* MakeOrFindNode(int value);
+	bool IsSafe(HamiltonianNode* nodeU, HamiltonianNode* nodeV);
+	bool HamiltonianCycleAndPathUtil(HamiltonianNode* node);
 
 public:
 	void PushUndirectedEdge(int valueU, int valueV);
 	void PushSingleNode(int valueU);
+	void FindHamiltonianCycleAndPath();
 };
