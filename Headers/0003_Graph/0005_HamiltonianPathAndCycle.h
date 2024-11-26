@@ -30,4 +30,8 @@ public:
 	void PushUndirectedEdge(int valueU, int valueV);
 	void PushSingleNode(int valueU);
 	void FindHamiltonianCycleAndPath();
+	bool IsHamiltonianCyclePresent();
+	bool IsHamiltonianPathPresent();
+	vector<HamiltonianNode*> GetHamiltonianCycle();
+	vector<HamiltonianNode*> GetHamiltonianPath();
 };

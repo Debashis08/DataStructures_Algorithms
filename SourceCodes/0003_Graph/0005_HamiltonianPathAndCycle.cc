@@ -60,9 +60,9 @@ bool HamiltonianGraph::HamiltonianCycleAndPathUtil(HamiltonianNode* nodeU)
 			{
 				return true;
 			}
-			this->_hamiltonianPath.pop_back();
-			iterator.second->isVisited = false;
 			this->visitedNodeCount--;
+			iterator.second->isVisited = false;
+			this->_hamiltonianPath.pop_back();
 		}
 	}
 	return false;
@@ -85,9 +85,36 @@ void HamiltonianGraph::PushSingleNode(int valueU)
 
 void HamiltonianGraph::FindHamiltonianCycleAndPath()
 {
+	this->isHamiltonianCyclePresent = false;
+	this->isHamiltonianPathPresent = false;
+	this->_hamiltonianPath = {};
 	HamiltonianNode* node = this->_nodeMap[0];
 	this->_hamiltonianPath.push_back(node);
 	node->isVisited = true;
 	this->visitedNodeCount = 1;
 	this->HamiltonianCycleAndPathUtil(node);
+}
+
+bool HamiltonianGraph::IsHamiltonianCyclePresent()
+{
+	return this->isHamiltonianCyclePresent;
+}
+
+bool HamiltonianGraph::IsHamiltonianPathPresent()
+{
+	return this->isHamiltonianPathPresent;
+}
+
+vector<HamiltonianNode*> HamiltonianGraph::GetHamiltonianCycle()
+{
+	if (this->isHamiltonianCyclePresent)
+	{
+		this->_hamiltonianPath.push_back(this->_nodeMap[0]);
+	}
+	return this->_hamiltonianPath;
+}
+
+vector<HamiltonianNode*> HamiltonianGraph::GetHamiltonianPath()
+{
+	return this->_hamiltonianPath;
 }
