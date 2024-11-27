@@ -118,7 +118,7 @@ public:
 		auto minimumElementIterator = min_element(data.begin(), data.end());
 		long long startIndex = distance(data.begin(), minimumElementIterator);
 		vector<T> normalizedCycle;
-		normalizedCycle.insert(normalizedCycle.begin(), data.begin() + startIndex, data.end());
+		normalizedCycle.insert(normalizedCycle.end(), data.begin() + startIndex, data.end());
 		normalizedCycle.insert(normalizedCycle.end(), data.begin(), data.begin() + startIndex);
 		return normalizedCycle;
 	}
