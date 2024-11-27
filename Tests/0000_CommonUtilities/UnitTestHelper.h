@@ -10,7 +10,7 @@ class UnitTestHelper
 {
 public:
 	template<typename T>
-	string VerifyVectorResult(vector<T> vector)
+	string SerializeVectorToString(vector<T> vector)
 	{
 		string result = "";
 		for (auto& iterator : vector)
@@ -22,7 +22,7 @@ public:
 	}
 
 	template<typename T>
-	string VerifyVectorResult(vector<pair<T,T>> vector)
+	string SerializeVectorToString(vector<pair<T,T>> vector)
 	{
 		string result = "";
 		for (auto& iterator : vector)
@@ -38,7 +38,7 @@ public:
 	}
 	
 	template<typename T>
-	string VerifyVectorResult(vector<pair<T, pair<T, T>>> vector)
+	string SerializeVectorToString(vector<pair<T, pair<T, T>>> vector)
 	{
 		string result = "";
 		for (auto& iterator : vector)
@@ -54,7 +54,7 @@ public:
 	}
 
 	template<typename T>
-	string VerifyVectorResult(vector<vector<T>> vector)
+	string SerializeVectorToString(vector<vector<T>> vector)
 	{
 		string result = "";
 		for (auto& iterator : vector)
@@ -106,5 +106,20 @@ public:
 			});
 
 		return data;
+	}
+
+	template<typename T>
+	vector<T> NormalizeCycle(vector<T> data)
+	{
+		if (data.empty())
+		{
+			return {};
+		}
+		auto minimumElementIterator = min_element(data.begin(), data.end());
+		long long startIndex = distance(data.begin(), minimumElementIterator);
+		vector<T> normalizedCycle;
+		normalizedCycle.insert(normalizedCycle.begin(), data.begin() + startIndex, data.end());
+		normalizedCycle.insert(normalizedCycle.end(), data.begin(), data.begin() + startIndex);
+		return normalizedCycle;
 	}
 };

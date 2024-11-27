@@ -16,12 +16,13 @@ public:
 class HamiltonianGraph
 {
 private:
-	bool isHamiltonianCyclePresent;
-	bool isHamiltonianPathPresent;
-	int visitedNodeCount;
+	bool _isHamiltonianCyclePresent;
+	bool _isHamiltonianPathPresent;
+	int _visitedNodeCount;
+	HamiltonianNode* _startingNode;
 	map<HamiltonianNode*, unordered_set<HamiltonianNode*>> _adjlist;
 	map<int, HamiltonianNode*> _nodeMap;
-	vector<HamiltonianNode*> _hamiltonianPath;
+	vector<int> _hamiltonianPath;
 	HamiltonianNode* MakeOrFindNode(int value);
 	bool IsSafe(HamiltonianNode* nodeU, HamiltonianNode* nodeV);
 	bool HamiltonianCycleAndPathUtil(HamiltonianNode* node);
@@ -32,6 +33,5 @@ public:
 	void FindHamiltonianCycleAndPath();
 	bool IsHamiltonianCyclePresent();
 	bool IsHamiltonianPathPresent();
-	vector<HamiltonianNode*> GetHamiltonianCycle();
-	vector<HamiltonianNode*> GetHamiltonianPath();
+	vector<int> GetHamiltonianPath();
 };

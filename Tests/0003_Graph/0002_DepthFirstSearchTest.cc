@@ -21,7 +21,7 @@ namespace DepthFirstSearchTest
 
         graph.DFS();
 
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowDFSResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowDFSResult());
         string expectedResult = "1(1,8) 2(2,7) 3(9,12) 4(4,5) 5(3,6) 6(10,11)";
         EXPECT_EQ(actualResult, expectedResult);
     }
@@ -35,7 +35,7 @@ namespace DepthFirstSearchTest
 
         graph.DFS();
 
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowDFSResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowDFSResult());
         string expectedResult = "1(1,2)";
         EXPECT_EQ(actualResult, expectedResult);
     }
@@ -49,7 +49,7 @@ namespace DepthFirstSearchTest
 
         graph.DFS();
 
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowDFSResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowDFSResult());
         string expectedResult = "1(1,4) 2(2,3) 3(5,8) 4(6,7)";
         EXPECT_EQ(actualResult, expectedResult);
     }
@@ -64,7 +64,7 @@ namespace DepthFirstSearchTest
 
         graph.DFS();
 
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowDFSResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowDFSResult());
         string expectedResult = "1(1,6) 2(2,5) 3(3,4)";
         EXPECT_EQ(actualResult, expectedResult);
     }
@@ -92,7 +92,7 @@ namespace DepthFirstSearchTest
 
         graph.DFS();
 
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowDFSResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowDFSResult());
         string expectedResult = "1(1,32) 2(2,29) 3(30,31) 4(3,28) 5(4,27) 6(5,26) 7(6,25) 8(7,24) 9(8,23) 10(9,22) 11(10,21) 12(11,20) 13(12,19) 14(13,18) 15(14,17) 16(15,16)";
         EXPECT_EQ(actualResult, expectedResult);
     }
@@ -108,7 +108,7 @@ namespace DepthFirstSearchTest
 
         graph.DFS();
 
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowDFSResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowDFSResult());
         string expectedResult = "1(1,2) 2(3,4) 3(5,6)";
         EXPECT_EQ(actualResult, expectedResult);
     }
@@ -125,7 +125,7 @@ namespace DepthFirstSearchTest
 
         graph.DFS();
 
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowDFSResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowDFSResult());
         string expectedResult = "1(1,8) 2(2,7) 3(3,4) 4(5,6)";
         EXPECT_EQ(actualResult, expectedResult);
     }
@@ -150,7 +150,7 @@ namespace DepthFirstSearchTest
 
         graph.DFS();
 
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowDFSResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowDFSResult());
         string expectedResult = "1(1,8) 2(2,7) 3(3,6) 4(4,5)";
         EXPECT_EQ(actualResult, expectedResult);
     }
@@ -169,7 +169,7 @@ namespace DepthFirstSearchTest
 
         graph.DFS();
 
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowDFSResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowDFSResult());
         string expectedResult = "1(1,6) 2(2,5) 3(3,4)";
         EXPECT_EQ(actualResult, expectedResult);
     }
