@@ -16,6 +16,7 @@ add_executable(
   0002_DepthFirstSearchTest.cc
   0003_TopologicalSortTest.cc
   0004_StronglyConnectedComponentsTest.cc
+  0005_HamiltonianPathAndCycleTest.cc
 )
 
 target_link_libraries(

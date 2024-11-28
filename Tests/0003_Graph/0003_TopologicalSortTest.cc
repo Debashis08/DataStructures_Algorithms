@@ -23,7 +23,7 @@ namespace TopologicalSortTest
 
         graph.TopologicalSort();
 
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowTopologicalSortResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowTopologicalSortResult());
         string expectedResult = "9(17,18) 6(11,16) 7(12,15) 8(13,14) 5(9,10) 1(1,8) 4(6,7) 2(2,5) 3(3,4)";
 
         EXPECT_EQ(actualResult, expectedResult);
@@ -42,7 +42,7 @@ namespace TopologicalSortTest
         graph.PushDirectedEdge(6, 7);
 
         graph.TopologicalSort();
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowTopologicalSortResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowTopologicalSortResult());
         string expectedResult = "1(1,14) 3(12,13) 2(2,11) 4(3,10) 5(4,9) 6(5,8) 7(6,7)";
 
         EXPECT_EQ(actualResult, expectedResult);
@@ -57,7 +57,7 @@ namespace TopologicalSortTest
         graph.PushDirectedEdge(5, 6);
 
         graph.TopologicalSort();
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowTopologicalSortResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowTopologicalSortResult());
         string expectedResult = "5(9,12) 6(10,11) 3(5,8) 4(6,7) 1(1,4) 2(2,3)";
 
         EXPECT_EQ(actualResult, expectedResult);
@@ -72,7 +72,7 @@ namespace TopologicalSortTest
         graph.PushDirectedEdge(3, 4);
 
         graph.TopologicalSort();
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowTopologicalSortResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowTopologicalSortResult());
         string expectedResult = "2(7,8) 1(1,6) 3(2,5) 4(3,4)";
 
         EXPECT_EQ(actualResult, expectedResult);
@@ -85,7 +85,7 @@ namespace TopologicalSortTest
         graph.PushSingleNode(1);
 
         graph.TopologicalSort();
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowTopologicalSortResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowTopologicalSortResult());
         string expectedResult = "1(1,2)";
 
         EXPECT_EQ(actualResult, expectedResult);
