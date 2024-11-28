@@ -109,17 +109,31 @@ public:
 	}
 
 	template<typename T>
-	vector<T> NormalizeCycle(vector<T> data)
+	bool NormalizeCyclesAnCompare(vector<T> data1, vector<T> data2)
 	{
-		if (data.empty())
+		if (data1.size() != data2.size())
 		{
-			return {};
+			return false;
 		}
-		auto minimumElementIterator = min_element(data.begin(), data.end());
-		long long startIndex = distance(data.begin(), minimumElementIterator);
-		vector<T> normalizedCycle;
-		normalizedCycle.insert(normalizedCycle.end(), data.begin() + startIndex, data.end());
-		normalizedCycle.insert(normalizedCycle.end(), data.begin(), data.begin() + startIndex);
-		return normalizedCycle;
+		
+		// Normalized rotation of cycle 1
+		vector<T> normalizedCycle1(data1);
+		auto minIterator1 = min_element(normalizedCycle1.begin(), normalizedCycle1.end());
+		rotate(normalizedCycle1.begin(), minIterator1, normalizedCycle1.end());
+
+		// Normalized rotation of cycle 2
+		vector<T> normalizedCycle2(data2);
+		auto minIterator2 = min_element(normalizedCycle2.begin(), normalizedCycle2.end());
+		rotate(normalizedCycle2.begin(), minIterator2, normalizedCycle2.end());
+
+		// Check clock wise
+		if (normalizedCycle1 == normalizedCycle2)
+		{
+			return true;
+		}
+
+		// Check counter clock wise
+		reverse(normalizedCycle2.begin() + 1, normalizedCycle2.end());
+		return (normalizedCycle1 == normalizedCycle2);
 	}
 };

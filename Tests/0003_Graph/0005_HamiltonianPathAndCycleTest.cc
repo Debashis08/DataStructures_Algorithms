@@ -24,10 +24,10 @@ namespace HamiltonianPathAndCycleTest
 		bool isHamiltonianPathPresent = graph.IsHamiltonianPathPresent();
 
 		vector<int> hamiltonianPathActualResult = graph.GetHamiltonianPath();
-		vector<int> hamiltonianPathExpectedResult = { 2, 4, 3, 0, 1 };
+		vector<int> hamiltonianPathExpectedResult = { 4, 3, 0, 1, 2 };
 		
 		ASSERT_TRUE(isHamiltonianCyclePresent);
 		ASSERT_TRUE(isHamiltonianPathPresent);
-		EXPECT_EQ(unitTestHelper.NormalizeCycle(hamiltonianPathActualResult), unitTestHelper.NormalizeCycle(hamiltonianPathExpectedResult));
+		ASSERT_TRUE(unitTestHelper.NormalizeCyclesAnCompare(hamiltonianPathActualResult, hamiltonianPathExpectedResult));
 	}
 }
