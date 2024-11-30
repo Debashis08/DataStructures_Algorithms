@@ -2,13 +2,13 @@
 #include "../Headers/0003_Graph/0005_HamiltonianPathAndCycle.h"
 #include "../0000_CommonUtilities/UnitTestHelper.h"
 
-namespace HamiltonianPathAndCycleTest
+namespace HamiltonianPathAndCycle
 {
 	UnitTestHelper unitTestHelper;
 
 	TEST(HamiltonianCycleAndPathTest, ShowResult)
 	{
-		HamiltonianGraph graph;
+		Graph graph;
 
 		graph.PushUndirectedEdge(0, 1);
 		graph.PushUndirectedEdge(0, 3);

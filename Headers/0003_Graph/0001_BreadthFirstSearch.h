@@ -6,27 +6,30 @@
 #include<string>
 #include<vector>
 using namespace std;
-enum color { WHITE, GRAY, BLACK };
 
-class BFSNode
+namespace BreadthFirstSearch
 {
-public:
-    int data;
-    int distance;
-    int color;
-    BFSNode* parent;
-    BFSNode(int value);
-};
+    enum color { WHITE, GRAY, BLACK };
+    class Node
+    {
+    public:
+        int data;
+        int distance;
+        int color;
+        Node* parent;
+        Node(int value);
+    };
 
-class BFSGraph
-{
-private:
-    map<BFSNode*, list<BFSNode*>> _adjlist;
-    map<int, BFSNode*> _nodeMap;
-    BFSNode* MakeOrFindNode(int value);
-    void BreadthFirstSearch(BFSNode* node);
-public:
-    void PushUndirectedEdge(int valueU, int valueV);
-    void BFS(int value);
-    vector<pair<int, int>> ShowBFSResult();
-};
+    class Graph
+    {
+    private:
+        map<Node*, list<Node*>> _adjlist;
+        map<int, Node*> _nodeMap;
+        Node* MakeOrFindNode(int value);
+        void BreadthFirstSearch(Node* node);
+    public:
+        void PushUndirectedEdge(int valueU, int valueV);
+        void BFS(int value);
+        vector<pair<int, int>> ShowBFSResult();
+    };
+}

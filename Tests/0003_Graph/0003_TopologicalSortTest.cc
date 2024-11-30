@@ -2,13 +2,13 @@
 #include "../Headers/0003_Graph/0003_TopologicalSort.h"
 #include "../0000_CommonUtilities/UnitTestHelper.h"
 
-namespace TopologicalSortTest
+namespace TopologicalSort
 {
 	UnitTestHelper unitTestHelper;
 
 	TEST(TopoSortTesting, ShowTopoSortResult)
 	{
-		TopologicalSortGraph graph;
+		Graph graph;
 
         graph.PushDirectedEdge(1, 2);
         graph.PushDirectedEdge(1, 4);
@@ -32,7 +32,7 @@ namespace TopologicalSortTest
     // Test with a larger graph and multiple paths between nodes
     TEST(TopoSortTesting, LargeGraphMultiplePaths)
     {
-        TopologicalSortGraph graph;
+        Graph graph;
         graph.PushDirectedEdge(1, 2);
         graph.PushDirectedEdge(1, 3);
         graph.PushDirectedEdge(2, 4);
@@ -51,7 +51,7 @@ namespace TopologicalSortTest
     // Test with a graph containing disconnected components
     TEST(TopoSortTesting, DisconnectedGraph)
     {
-        TopologicalSortGraph graph;
+        Graph graph;
         graph.PushDirectedEdge(1, 2);
         graph.PushDirectedEdge(3, 4);
         graph.PushDirectedEdge(5, 6);
@@ -66,7 +66,7 @@ namespace TopologicalSortTest
     // Test with a graph that has multiple nodes pointing to the same node
     TEST(TopoSortTesting, MultipleIncomingEdges)
     {
-        TopologicalSortGraph graph;
+        Graph graph;
         graph.PushDirectedEdge(1, 3);
         graph.PushDirectedEdge(2, 3);
         graph.PushDirectedEdge(3, 4);
@@ -81,7 +81,7 @@ namespace TopologicalSortTest
     // Test for a single-node graph to check the base case
     TEST(TopoSortTesting, SingleNodeGraph)
     {
-        TopologicalSortGraph graph;
+        Graph graph;
         graph.PushSingleNode(1);
 
         graph.TopologicalSort();
@@ -94,7 +94,7 @@ namespace TopologicalSortTest
     // Test with a cyclic graph to verify it can detect cycles (assuming cycle detection is implemented)
     TEST(TopoSortTesting, CyclicGraph)
     {
-        TopologicalSortGraph graph;
+        Graph graph;
         graph.PushDirectedEdge(1, 2);
         graph.PushDirectedEdge(2, 3);
         graph.PushDirectedEdge(3, 1);  // Cycle: 1 -> 2 -> 3 -> 1

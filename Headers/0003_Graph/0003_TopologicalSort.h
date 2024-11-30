@@ -5,32 +5,36 @@
 #include<string>
 #include<vector>
 using namespace std;
-enum color { WHITE, GRAY, BLACK };
 
-class TopologicalSortNode
+namespace TopologicalSort
 {
-public:
-    int data;
-    int color;
-    int discoveryTime;
-    int finishingTime;
-    TopologicalSortNode* parent;
-    TopologicalSortNode(int value);
-};
+    enum color { WHITE, GRAY, BLACK };
 
-class TopologicalSortGraph
-{
-private:
-    int time;
-    bool hasCycle;
-    map<TopologicalSortNode*, list<TopologicalSortNode*>> _adjlist;
-    map<int, TopologicalSortNode*> _nodeMap;
-    list<TopologicalSortNode*> _topologicalSortedNodeList;
-    TopologicalSortNode* MakeOrFindNode(int value);
-    void DepthFirstSearch(TopologicalSortNode* DFSNode);
-public:
-    void PushDirectedEdge(int valueU, int valueV);
-    void PushSingleNode(int valueU);
-    void TopologicalSort();
-    vector<pair<int, pair<int, int>>> ShowTopologicalSortResult();
-};
+    class Node
+    {
+    public:
+        int data;
+        int color;
+        int discoveryTime;
+        int finishingTime;
+        Node* parent;
+        Node(int value);
+    };
+
+    class Graph
+    {
+    private:
+        int time;
+        bool hasCycle;
+        map<Node*, list<Node*>> _adjlist;
+        map<int, Node*> _nodeMap;
+        list<Node*> _topologicalSortedNodeList;
+        Node* MakeOrFindNode(int value);
+        void DepthFirstSearch(Node* DFSNode);
+    public:
+        void PushDirectedEdge(int valueU, int valueV);
+        void PushSingleNode(int valueU);
+        void TopologicalSort();
+        vector<pair<int, pair<int, int>>> ShowTopologicalSortResult();
+    };
+}

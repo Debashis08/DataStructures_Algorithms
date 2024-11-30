@@ -5,33 +5,36 @@
 #include<vector>
 using namespace std;
 
-class HamiltonianNode
+namespace HamiltonianPathAndCycle
 {
-public:
-	int data;
-	bool isVisited;
-	HamiltonianNode(int value);
-};
+	class Node
+	{
+	public:
+		int data;
+		bool isVisited;
+		Node(int value);
+	};
 
-class HamiltonianGraph
-{
-private:
-	bool _isHamiltonianCyclePresent;
-	bool _isHamiltonianPathPresent;
-	int _visitedNodeCount;
-	HamiltonianNode* _startingNode;
-	map<HamiltonianNode*, unordered_set<HamiltonianNode*>> _adjlist;
-	map<int, HamiltonianNode*> _nodeMap;
-	vector<int> _hamiltonianPath;
-	HamiltonianNode* MakeOrFindNode(int value);
-	bool IsSafe(HamiltonianNode* nodeU, HamiltonianNode* nodeV);
-	bool HamiltonianCycleAndPathUtil(HamiltonianNode* node);
+	class Graph
+	{
+	private:
+		bool _isHamiltonianCyclePresent;
+		bool _isHamiltonianPathPresent;
+		int _visitedNodeCount;
+		Node* _startingNode;
+		map<Node*, unordered_set<Node*>> _adjlist;
+		map<int, Node*> _nodeMap;
+		vector<int> _hamiltonianPath;
+		Node* MakeOrFindNode(int value);
+		bool IsSafe(Node* nodeU, Node* nodeV);
+		bool HamiltonianCycleAndPathUtil(Node* node);
 
-public:
-	void PushUndirectedEdge(int valueU, int valueV);
-	void PushSingleNode(int valueU);
-	void FindHamiltonianCycleAndPath();
-	bool IsHamiltonianCyclePresent();
-	bool IsHamiltonianPathPresent();
-	vector<int> GetHamiltonianPath();
-};
+	public:
+		void PushUndirectedEdge(int valueU, int valueV);
+		void PushSingleNode(int valueU);
+		void FindHamiltonianCycleAndPath();
+		bool IsHamiltonianCyclePresent();
+		bool IsHamiltonianPathPresent();
+		vector<int> GetHamiltonianPath();
+	};
+}

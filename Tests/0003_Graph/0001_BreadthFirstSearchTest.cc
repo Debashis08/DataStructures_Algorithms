@@ -3,14 +3,14 @@
 #include "../Headers/0003_Graph/0001_BreadthFirstSearch.h"
 #include "../0000_CommonUtilities/UnitTestHelper.h"
 
-namespace BreadthFirstSearchTest
+namespace BreadthFirstSearch
 {
     UnitTestHelper unitTestHelper;
 
 
 	TEST(BFSTesting, ShowBFSResultTest01) 
     {
-		BFSGraph graph;
+		Graph graph;
 
         graph.PushUndirectedEdge(1, 2);
         graph.PushUndirectedEdge(1, 3);
@@ -32,7 +32,7 @@ namespace BreadthFirstSearchTest
 
     TEST(BFSTesting, ShowBFSResultTest02) 
     {
-        BFSGraph graph;
+        Graph graph;
 
         graph.PushUndirectedEdge(1, 2);
 
