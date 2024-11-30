@@ -4,6 +4,7 @@ set(0003GRAPH_SOURCES
     0002_DepthFirstSearch.cc
     0003_TopologicalSort.cc
     0004_StronglyConnectedComponents.cc
+    0005_HamiltonianPathAndCycle.cc
 )
 
 # Create a library target

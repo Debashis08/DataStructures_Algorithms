@@ -3,7 +3,7 @@
 #include "../Headers/0002_Tree/0001_BinarySearchTree.h"
 #include "../0000_CommonUtilities/UnitTestHelper.h"
 
-namespace BinarySearchTreeTest
+namespace BinarySearchTree
 {
     UnitTestHelper unitTestHelper;
 
@@ -15,7 +15,7 @@ namespace BinarySearchTreeTest
         bst.InsertNode(60);
 
 
-        string actualResult = unitTestHelper.VerifyVectorResult(bst.GetRecursiveInorderTravesalResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(bst.GetRecursiveInorderTravesalResult());
         string expectedResult = "30 50 60";
 
         EXPECT_EQ(actualResult, expectedResult);
@@ -28,7 +28,7 @@ namespace BinarySearchTreeTest
         bst.InsertNode(30);
         bst.InsertNode(60);
 
-        string actualResult = unitTestHelper.VerifyVectorResult(bst.GetRecursivePreorderTravesalResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(bst.GetRecursivePreorderTravesalResult());
         string expectedResult = "50 30 60";
 
         EXPECT_EQ(actualResult, expectedResult);
@@ -41,7 +41,7 @@ namespace BinarySearchTreeTest
         bst.InsertNode(30);
         bst.InsertNode(60);
 
-        string actualResult = unitTestHelper.VerifyVectorResult(bst.GetRecursivePostorderTravesalResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(bst.GetRecursivePostorderTravesalResult());
         string expectedResult = "30 60 50";
 
         EXPECT_EQ(actualResult, expectedResult);
@@ -55,7 +55,7 @@ namespace BinarySearchTreeTest
         bst.InsertNode(60);
         
 
-        string actualResult = unitTestHelper.VerifyVectorResult(bst.GetMorrisInorderTraversalResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(bst.GetMorrisInorderTraversalResult());
         string expectedResult = "30 50 60";
 
         EXPECT_EQ(actualResult, expectedResult);
@@ -69,7 +69,7 @@ namespace BinarySearchTreeTest
         bst.InsertNode(60);
 
 
-        string actualResult = unitTestHelper.VerifyVectorResult(bst.GetMorrisPreorderTraversalResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(bst.GetMorrisPreorderTraversalResult());
         string expectedResult = "50 30 60";
 
         EXPECT_EQ(actualResult, expectedResult);
@@ -83,7 +83,7 @@ namespace BinarySearchTreeTest
         bst.InsertNode(60);
 
 
-        string actualResult = unitTestHelper.VerifyVectorResult(bst.GetMorrisPostorderTraversalResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(bst.GetMorrisPostorderTraversalResult());
         string expectedResult = "30 60 50";
 
         EXPECT_EQ(actualResult, expectedResult);

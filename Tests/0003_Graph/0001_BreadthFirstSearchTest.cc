@@ -3,14 +3,14 @@
 #include "../Headers/0003_Graph/0001_BreadthFirstSearch.h"
 #include "../0000_CommonUtilities/UnitTestHelper.h"
 
-namespace BreadthFirstSearchTest
+namespace BreadthFirstSearch
 {
     UnitTestHelper unitTestHelper;
 
 
 	TEST(BFSTesting, ShowBFSResultTest01) 
     {
-		BFSGraph graph;
+		Graph graph;
 
         graph.PushUndirectedEdge(1, 2);
         graph.PushUndirectedEdge(1, 3);
@@ -25,20 +25,20 @@ namespace BreadthFirstSearchTest
 
         graph.BFS(1);
         
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowBFSResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowBFSResult());
         string expectedResult = "1(0) 2(1) 3(1) 4(2) 5(2) 6(2) 7(3) 8(3)";
         EXPECT_EQ(actualResult, expectedResult);
 	}
 
     TEST(BFSTesting, ShowBFSResultTest02) 
     {
-        BFSGraph graph;
+        Graph graph;
 
         graph.PushUndirectedEdge(1, 2);
 
         graph.BFS(1);
 
-        string actualResult = unitTestHelper.VerifyVectorResult(graph.ShowBFSResult());
+        string actualResult = unitTestHelper.SerializeVectorToString(graph.ShowBFSResult());
         string expectedResult = "1(0) 2(1)";
         EXPECT_EQ(actualResult, expectedResult);
     }
