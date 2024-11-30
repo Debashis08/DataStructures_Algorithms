@@ -3,7 +3,7 @@
 #include "../Headers/0002_Tree/0001_BinarySearchTree.h"
 #include "../0000_CommonUtilities/UnitTestHelper.h"
 
-namespace BinarySearchTreeTest
+namespace BinarySearchTree
 {
     UnitTestHelper unitTestHelper;
 

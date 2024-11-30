@@ -2,13 +2,13 @@
 #include "../Headers/0003_Graph/0002_DepthFirstSearch.h"
 #include "../0000_CommonUtilities/UnitTestHelper.h"
 
-namespace DepthFirstSearchTest
+namespace DepthFirstSearch
 {
     UnitTestHelper unitTestHelper;
 
     TEST(DFSTesting, ShowDFSResultTest01)
     {
-        DFSGraph graph;
+        Graph graph;
 
         graph.PushDirectedEdge(1, 2);
         graph.PushDirectedEdge(1, 4);
@@ -29,7 +29,7 @@ namespace DepthFirstSearchTest
 
     TEST(DFSTesting, ShowDFSResultTest_SingleVertex)
     {
-        DFSGraph graph;
+        Graph graph;
 
         graph.PushDirectedEdge(1, 1);
 
@@ -42,7 +42,7 @@ namespace DepthFirstSearchTest
 
     TEST(DFSTesting, ShowDFSResultTest_DisconnectedGraph)
     {
-        DFSGraph graph;
+        Graph graph;
 
         graph.PushDirectedEdge(1, 2);
         graph.PushDirectedEdge(3, 4);
@@ -56,7 +56,7 @@ namespace DepthFirstSearchTest
 
     TEST(DFSTesting, ShowDFSResultTest_CyclicGraph)
     {
-        DFSGraph graph;
+        Graph graph;
 
         graph.PushDirectedEdge(1, 2);
         graph.PushDirectedEdge(2, 3);
@@ -71,7 +71,7 @@ namespace DepthFirstSearchTest
 
     TEST(DFSTesting, ShowDFSResultTest_LargeGraph)
     {
-        DFSGraph graph;
+        Graph graph;
 
         // Adding 15 nodes with several edges
         graph.PushDirectedEdge(1, 2);
@@ -99,7 +99,7 @@ namespace DepthFirstSearchTest
 
     TEST(DFSTesting, ShowDFSResultTest_NoEdges)
     {
-        DFSGraph graph;
+        Graph graph;
 
         // Adding isolated nodes
         graph.PushDirectedEdge(1, 1);
@@ -115,7 +115,7 @@ namespace DepthFirstSearchTest
 
     TEST(DFSTesting, ShowDFSResultTest_CyclicGraphWithBackEdges)
     {
-        DFSGraph graph;
+        Graph graph;
 
         // Creating a cycle with back edges
         graph.PushDirectedEdge(1, 2);
@@ -132,7 +132,7 @@ namespace DepthFirstSearchTest
 
     TEST(DFSTesting, ShowDFSResultTest_DenseGraph)
     {
-        DFSGraph graph;
+        Graph graph;
 
         // Complete graph of 4 nodes
         graph.PushDirectedEdge(1, 2);
@@ -157,7 +157,7 @@ namespace DepthFirstSearchTest
 
     TEST(DFSTesting, ShowDFSResultTest_SelfLoopsAndParallelEdges)
     {
-        DFSGraph graph;
+        Graph graph;
 
         // Adding self-loops and parallel edges
         graph.PushDirectedEdge(1, 1);

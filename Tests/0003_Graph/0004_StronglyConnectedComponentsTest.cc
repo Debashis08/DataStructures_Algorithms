@@ -2,14 +2,14 @@
 #include "../Headers/0003_Graph/0004_StronglyConnectedComponents.h"
 #include "../0000_CommonUtilities/UnitTestHelper.h"
 
-namespace StronglyConnectedComponentsTest
+namespace StronglyConnectedComponents
 {
 	UnitTestHelper  unitTestHelper;
 
     // Test case: Testing with a simple graph.
 	TEST(StronglyConnectedComponentsTesting, SimpleGraphTest)
 	{
-		StronglyConnectedComponentsGraph graph;
+		Graph graph;
 
 		graph.PushDirectedEdge(1, 2);
 		graph.PushDirectedEdge(1, 5);
@@ -34,7 +34,7 @@ namespace StronglyConnectedComponentsTest
     // Test case: Single Node.
     TEST(StronglyConnectedComponentsTesting, SingleNodeTest) 
     {
-        StronglyConnectedComponentsGraph graph;
+        Graph graph;
         graph.PushSingleNode(1);
 
         auto actualResult = graph.FindAllStronglyConnectedComponents();
@@ -45,7 +45,7 @@ namespace StronglyConnectedComponentsTest
     // Test case: Disconnected Graph.
     TEST(StronglyConnectedComponentsTesting, DisconnectedGraphTest)
     {
-        StronglyConnectedComponentsGraph graph;
+        Graph graph;
         graph.PushSingleNode(1);
         graph.PushSingleNode(2);
         graph.PushSingleNode(3);
@@ -58,7 +58,7 @@ namespace StronglyConnectedComponentsTest
     // Test case: Chain of Nodes.
     TEST(StronglyConnectedComponentsTesting, ChainOfNodesTest)
     {
-        StronglyConnectedComponentsGraph graph;
+        Graph graph;
         graph.PushDirectedEdge(1, 2);
         graph.PushDirectedEdge(2, 3);
         graph.PushDirectedEdge(3, 4);
@@ -71,7 +71,7 @@ namespace StronglyConnectedComponentsTest
     // Test case: Bidirectional Edge.
     TEST(StronglyConnectedComponentsTesting, BidirectionalEdgeTest)
     {
-        StronglyConnectedComponentsGraph graph;
+        Graph graph;
         graph.PushDirectedEdge(1, 2);
         graph.PushDirectedEdge(2, 1);
 
@@ -83,7 +83,7 @@ namespace StronglyConnectedComponentsTest
     // Test case: Complex Graph.
     TEST(StronglyConnectedComponentsTesting, ComplexGraphTest)
     {
-        StronglyConnectedComponentsGraph graph;
+        Graph graph;
 
         // Graph structure with multiple SCCs and isolated nodes.
         graph.PushDirectedEdge(1, 2);
