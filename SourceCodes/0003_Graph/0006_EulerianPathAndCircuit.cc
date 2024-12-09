@@ -1,4 +1,6 @@
 #include "../Headers/0003_Graph/0006_EulerianPathAndCircuit.h"
+#include<stack>
+#include<algorithm>
 using namespace std;
 
 namespace EulerianPathAndCircuit
@@ -6,8 +8,10 @@ namespace EulerianPathAndCircuit
 	Node::Node(int value)
 	{
 		this->data = value;
-		this->visited = false;
 		this->degree = 0;
+		this->inDegree = 0;
+		this->outDegree = 0;
+		this->visited = false;
 	}
 
 	// Graph Private Member Methods
@@ -24,18 +28,6 @@ namespace EulerianPathAndCircuit
 			node = this->_nodeMap[value];
 		}
 		return node;
-	}
-
-	// Graph Public Member Methods
-	void Graph::PushUndirectedEdge(int valueU, int valueV)
-	{
-		Node* nodeU = this->MakeOrFindNode(valueU);
-		Node* nodeV = this->MakeOrFindNode(valueV);
-
-		this->_adjlist[nodeU].insert(nodeV);
-		nodeU->degree++;
-		this->_adjlist[nodeV].insert(nodeU);
-		nodeV->degree++;
 	}
 
 	void Graph::DepthFirstSearch(Node* nodeU)
@@ -74,7 +66,7 @@ namespace EulerianPathAndCircuit
 
 		this->DepthFirstSearch(node);
 
-		// Step-4 : Checking if all the non-zero degree vertexes have been visited or not.
+		// Step-4 : Checking if all the non-zero degree vertices have been visited or not.
 		for (auto& iterator : this->_nodeMap)
 		{
 			if (iterator.second->visited == false && iterator.second->degree != 0)
@@ -83,6 +75,50 @@ namespace EulerianPathAndCircuit
 			}
 		}
 		return true;
+	}
+
+	void Graph::EulerianPathHierholzerAlgorithm(Node* startingNode)
+	{
+		stack<Node*> currentPath;
+		currentPath.push(startingNode);
+		while (!currentPath.empty())
+		{
+			Node* currentNode = currentPath.top();
+			if (!this->_adjlist[currentNode].empty())
+			{
+				Node* nextNode = this->_adjlist[currentNode].front();
+				this->_adjlist[currentNode].pop_front();
+				this->_adjlist[nextNode].remove(currentNode);
+				currentPath.push(nextNode);
+			}
+			else
+			{
+				currentPath.pop();
+				this->_eulerianPath.push_back(currentNode->data);
+			}
+		}
+	}
+
+	// Graph Public Member Methods
+	void Graph::PushUndirectedEdge(int valueU, int valueV)
+	{
+		Node* nodeU = this->MakeOrFindNode(valueU);
+		Node* nodeV = this->MakeOrFindNode(valueV);
+
+		this->_adjlist[nodeU].push_back(nodeV);
+		nodeU->degree++;
+		this->_adjlist[nodeV].push_back(nodeU);
+		nodeV->degree++;
+	}
+
+	void Graph::PushDirectedEdge(int valueU, int valueV)
+	{
+		Node* nodeU = this->MakeOrFindNode(valueU);
+		Node* nodeV = this->MakeOrFindNode(valueV);
+
+		this->_adjlist[nodeU].push_back(nodeV);
+		nodeU->outDegree++;
+		nodeV->inDegree++;
 	}
 
 	void Graph::PushSingleNode(int valueU)
@@ -117,7 +153,7 @@ namespace EulerianPathAndCircuit
 			return;
 		}
 
-		// Check-2 : When 2 vertex have odd degree, then graph G is Semi-Eulerian.
+		// Check-2 : When 2 vertices have odd degree, then graph G is Semi-Eulerian.
 		if (oddDegreeVertexCount == 2)
 		{
 			this->_isEulerianPathPresent = true;
@@ -125,7 +161,7 @@ namespace EulerianPathAndCircuit
 			return;
 		}
 
-		// Check-3 : When more than 2 vertexes have odd degree, then graph G is Not Eulerian.
+		// Check-3 : When more than 2 vertices have odd degree, then graph G is Not Eulerian.
 		if (oddDegreeVertexCount > 2)
 		{
 			this->_isEulerianPathPresent = false;
@@ -144,9 +180,34 @@ namespace EulerianPathAndCircuit
 		return this->_isEulerianCircuitPresent;
 	}
 
-	// Not properly implemented
-	vector<int> Graph::GetEulerianPath()
+	vector<int> Graph::UndirectedGraphGetEulerianPath()
 	{
+		// Case-3 : When more than 2 vertices have odd degree, then the graph G is not Eulerian.
+		// No Eulerian Path is posible.
+		if (this->_isEulerianPathPresent == false)
+		{
+			return {};
+		}
+
+		// Now 2 cases remains.
+		// Case-2 : When 2 vertices have odd degree. Choose any one of them.
+		Node* node = nullptr;
+		for (auto& iterator : this->_nodeMap)
+		{
+			if (iterator.second->degree & 1)
+			{
+				node = iterator.second;
+				break;
+			}
+		}
+
+		// Case-1 : When no vertex with odd degree is present. Choose any vertex as starting point.
+		if (node == nullptr)
+		{
+			node = this->_nodeMap[0];
+		}
+		this->EulerianPathHierholzerAlgorithm(node);
+		reverse(this->_eulerianPath.begin(), this->_eulerianPath.end());
 		return this->_eulerianPath;
 	}
 }
