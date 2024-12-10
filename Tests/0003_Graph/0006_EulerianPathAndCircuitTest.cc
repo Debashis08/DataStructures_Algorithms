@@ -22,9 +22,11 @@ namespace EulerianPathAndCircuit
 		bool isEulerianPathPresent = graph.IsEulerianPathPresent();
 		bool isEulerianCircuitPresent = graph.IsEulerianCircuitPresent();
 
-		vector<int> eulerianPath = graph.GetEulerianPath();
+		vector<int> actualEulerianPath = graph.UndirectedGraphGetEulerianPath();
+		vector<int> expectedEulerianPath = { 0, 1, 2, 0, 3, 4, 0};
 
 		ASSERT_TRUE(isEulerianPathPresent);
 		ASSERT_TRUE(isEulerianCircuitPresent);
+		EXPECT_EQ(expectedEulerianPath, actualEulerianPath);
 	}
 }

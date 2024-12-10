@@ -33,7 +33,6 @@ namespace EulerianPathAndCircuit
 	void Graph::DepthFirstSearch(Node* nodeU)
 	{
 		nodeU->visited = true;
-		this->_eulerianPath.push_back(nodeU->data);
 		for (auto& nodeV : this->_adjlist[nodeU])
 		{
 			if (nodeV->visited == false)
