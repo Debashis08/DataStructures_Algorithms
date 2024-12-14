@@ -5,6 +5,7 @@ set(0003GRAPH_SOURCES
     0003_TopologicalSort.cc
     0004_StronglyConnectedComponents.cc
     0005_HamiltonianPathAndCycle.cc
+    0006_EulerianPathAndCircuit.cc
 )
 
 # Create a library target
