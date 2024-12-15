@@ -6,6 +6,8 @@ set(0003GRAPH_SOURCES
     0004_StronglyConnectedComponents.cc
     0005_HamiltonianPathAndCycle.cc
     0006_EulerianPathAndCircuit.cc
+    0007_MinimumSpanningTreeKruskalAlgorithm.cc
+
 )
 
 # Create a library target
