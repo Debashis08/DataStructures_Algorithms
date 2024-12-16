@@ -17,6 +17,7 @@ add_executable(
   0003_TopologicalSortTest.cc
   0004_StronglyConnectedComponentsTest.cc
   0005_HamiltonianPathAndCycleTest.cc
+  0006_EulerianPathAndCircuitTest.cc
 )
 
 target_link_libraries(
