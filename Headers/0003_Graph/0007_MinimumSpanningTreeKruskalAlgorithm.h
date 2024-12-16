@@ -2,6 +2,7 @@
 
 #include<map>
 #include<vector>
+#include<list>
 using namespace std;
 
 namespace MinimumSpanningTreeKruskalAlgorithm
@@ -22,7 +23,6 @@ namespace MinimumSpanningTreeKruskalAlgorithm
 		Node* nodeV;
 		int weight;
 		Edge(Node* nodeU, Node* nodeV, int weight);
-		bool CompareEdges(Edge* edgeX, Edge* edgeY);
 	};
 
 	class Graph
@@ -30,6 +30,8 @@ namespace MinimumSpanningTreeKruskalAlgorithm
 	private:
 		map<Node*, vector<Node*>> _adjlist;
 		map<int, Node*> _nodeMap;
+		vector<Edge*> _edgeList;
+		vector<pair<pair<int, int>, int>> _minimumSpanningTree;
 		Node* MakeOrFindNode(int data);
 		void MakeSet(Node* node);
 		void Union(Node* nodeU, Node* nodeV);
@@ -37,7 +39,9 @@ namespace MinimumSpanningTreeKruskalAlgorithm
 		Node* FindSet(Node* node);
 
 	public:
-		void PushUndirectedEdge(int valueU, int valueV);
+		void PushUndirectedEdge(int valueU, int valueV, int weight);
 		void FindMinimumSpanningTreeKruskalAlgorithm();
+		vector<pair<pair<int, int>, int>> GetMinimumSpanningTree();
+		vector<Edge*> GetSortedEdgeList();
 	};
 }

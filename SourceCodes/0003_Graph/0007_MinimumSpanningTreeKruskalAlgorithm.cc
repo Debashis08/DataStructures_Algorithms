@@ -1,5 +1,6 @@
 #include "../Headers/0003_Graph/0007_MinimumSpanningTreeKruskalAlgorithm.h"
 #include<climits>
+#include<algorithm>
 using namespace std;
 
 namespace MinimumSpanningTreeKruskalAlgorithm
@@ -16,11 +17,6 @@ namespace MinimumSpanningTreeKruskalAlgorithm
 		this->nodeU = nodeU;
 		this->nodeV = nodeV;
 		this->weight = weight;
-	}
-	
-	bool Edge::CompareEdges(Edge* edgeX, Edge* edgeY)
-	{
-		return (edgeX->weight < edgeY->weight);
 	}
 
 	// Graph Private Member Methods
@@ -76,12 +72,41 @@ namespace MinimumSpanningTreeKruskalAlgorithm
 	}
 
 	// Graph Public Member Methods
-	void Graph::PushUndirectedEdge(int dataU, int dataV)
+	void Graph::PushUndirectedEdge(int dataU, int dataV, int weight)
 	{
 		Node* nodeU = this->MakeOrFindNode(dataU);
 		Node* nodeV = this->MakeOrFindNode(dataV);
 
 		this->_adjlist[nodeU].push_back(nodeV);
 		this->_adjlist[nodeV].push_back(nodeU);
+		this->_edgeList.push_back(new Edge(nodeU, nodeV, weight));
+	}
+	void Graph::FindMinimumSpanningTreeKruskalAlgorithm()
+	{
+		for (auto iterator : this->_nodeMap)
+		{
+			this->MakeSet(iterator.second);
+		}
+		
+		sort(this->_edgeList.begin(), this->_edgeList.end(), [](Edge* edgeX, Edge* edgeY) {return edgeX->weight < edgeY->weight; });
+
+		for (auto edge : this->_edgeList)
+		{
+			if (this->FindSet(edge->nodeU) != this->FindSet(edge->nodeV))
+			{
+				this->Union(edge->nodeU, edge->nodeV);
+				this->_minimumSpanningTree.push_back({ {edge->nodeU->data, edge->nodeV->data}, edge->weight });
+			}
+		}
+	}
+
+	vector<pair<pair<int, int>, int>> Graph::GetMinimumSpanningTree()
+	{
+		return this->_minimumSpanningTree;
+	}
+
+	vector<Edge*> Graph::GetSortedEdgeList()
+	{
+		return this->_edgeList;
 	}
 }
