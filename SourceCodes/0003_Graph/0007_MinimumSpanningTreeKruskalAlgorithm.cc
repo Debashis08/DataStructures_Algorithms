@@ -88,7 +88,7 @@ namespace MinimumSpanningTreeKruskalAlgorithm
 			this->MakeSet(iterator.second);
 		}
 		
-		sort(this->_edgeList.begin(), this->_edgeList.end(), [](Edge* edgeX, Edge* edgeY) {return edgeX->weight < edgeY->weight; });
+		sort(this->_edgeList.begin(), this->_edgeList.end(), [](Edge* edgeX, Edge* edgeY) { return edgeX->weight < edgeY->weight; });
 
 		for (auto edge : this->_edgeList)
 		{
@@ -103,10 +103,5 @@ namespace MinimumSpanningTreeKruskalAlgorithm
 	vector<pair<pair<int, int>, int>> Graph::GetMinimumSpanningTree()
 	{
 		return this->_minimumSpanningTree;
-	}
-
-	vector<Edge*> Graph::GetSortedEdgeList()
-	{
-		return this->_edgeList;
 	}
 }

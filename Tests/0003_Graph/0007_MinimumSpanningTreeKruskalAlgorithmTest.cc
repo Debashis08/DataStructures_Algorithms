@@ -1,8 +1,11 @@
 #include<gtest/gtest.h>
-#include<0003_Graph/0007_MinimumSpanningTreeKruskalAlgorithm.h>
+#include "../Headers/0003_Graph/0007_MinimumSpanningTreeKruskalAlgorithm.h"
+#include "../0000_CommonUtilities/UnitTestHelper.h"
 
 namespace MinimumSpanningTreeKruskalAlgorithm
 {
+	UnitTestHelper unitTestHelper;
+
 	TEST(MST, Kruskal)
 	{
 		Graph graph;
@@ -24,7 +27,19 @@ namespace MinimumSpanningTreeKruskalAlgorithm
 
 		graph.FindMinimumSpanningTreeKruskalAlgorithm();
 
-		auto res1 = graph.GetSortedEdgeList();
-		auto res2 = graph.GetMinimumSpanningTree();
+		vector<pair<pair<int,int>, int>> actualMST = graph.GetMinimumSpanningTree();
+		vector<pair<pair<int, int>, int>> expectedMST =
+		{
+			{{7, 8}, 1},
+			{{3, 9}, 2},
+			{{6, 7}, 2},
+			{{2, 1}, 4},
+			{{3, 6}, 4},
+			{{3, 4}, 7},
+			{{8, 1}, 8},
+			{{4, 5}, 9}
+		};
+
+		ASSERT_EQ(unitTestHelper.SortVectorOfPair(actualMST), unitTestHelper.SortVectorOfPair(expectedMST));
 	}
 }

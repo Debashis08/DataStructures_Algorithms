@@ -42,6 +42,5 @@ namespace MinimumSpanningTreeKruskalAlgorithm
 		void PushUndirectedEdge(int valueU, int valueV, int weight);
 		void FindMinimumSpanningTreeKruskalAlgorithm();
 		vector<pair<pair<int, int>, int>> GetMinimumSpanningTree();
-		vector<Edge*> GetSortedEdgeList();
 	};
 }
