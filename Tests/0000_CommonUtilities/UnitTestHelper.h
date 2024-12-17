@@ -136,4 +136,22 @@ public:
 		reverse(normalizedCycle2.begin() + 1, normalizedCycle2.end());
 		return (normalizedCycle1 == normalizedCycle2);
 	}
+
+	template<typename T>
+	vector<pair<pair<T, T>, T>> SortVectorOfPair(vector<pair<pair<T, T>, T>> data)
+	{
+		for (auto& iterator : data)
+		{
+			if (iterator.first.first > iterator.first.second)
+			{
+				swap(iterator.first.first, iterator.first.second);
+			}
+		}
+
+		sort(data.begin(), data.end(), [](const pair<pair<T, T>, T>& pairA, const pair<pair<T, T>, T>& pairB)
+			{
+				return pairA.second < pairB.second;
+			});
+		return data;
+	}
 };
