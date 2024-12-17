@@ -81,16 +81,17 @@ namespace MinimumSpanningTreeKruskalAlgorithm
 		this->_adjlist[nodeV].push_back(nodeU);
 		this->_edgeList.push_back(new Edge(nodeU, nodeV, weight));
 	}
+
 	void Graph::FindMinimumSpanningTreeKruskalAlgorithm()
 	{
-		for (auto iterator : this->_nodeMap)
+		for (auto& iterator : this->_nodeMap)
 		{
 			this->MakeSet(iterator.second);
 		}
 		
 		sort(this->_edgeList.begin(), this->_edgeList.end(), [](Edge* edgeX, Edge* edgeY) { return edgeX->weight < edgeY->weight; });
 
-		for (auto edge : this->_edgeList)
+		for (auto& edge : this->_edgeList)
 		{
 			if (this->FindSet(edge->nodeU) != this->FindSet(edge->nodeV))
 			{
